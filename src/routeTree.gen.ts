@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as MasculinoRouteImport } from './routes/masculino'
 import { Route as FemininoRouteImport } from './routes/feminino'
 import { Route as ColecoesRouteImport } from './routes/colecoes'
+import { Route as CarrinhoRouteImport } from './routes/carrinho'
 import { Route as AcessoriosRouteImport } from './routes/acessorios'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProdutoSlugRouteImport } from './routes/produto.$slug'
@@ -29,6 +30,11 @@ const FemininoRoute = FemininoRouteImport.update({
 const ColecoesRoute = ColecoesRouteImport.update({
   id: '/colecoes',
   path: '/colecoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarrinhoRoute = CarrinhoRouteImport.update({
+  id: '/carrinho',
+  path: '/carrinho',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AcessoriosRoute = AcessoriosRouteImport.update({
@@ -50,6 +56,7 @@ const ProdutoSlugRoute = ProdutoSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/acessorios': typeof AcessoriosRoute
+  '/carrinho': typeof CarrinhoRoute
   '/colecoes': typeof ColecoesRoute
   '/feminino': typeof FemininoRoute
   '/masculino': typeof MasculinoRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/acessorios': typeof AcessoriosRoute
+  '/carrinho': typeof CarrinhoRoute
   '/colecoes': typeof ColecoesRoute
   '/feminino': typeof FemininoRoute
   '/masculino': typeof MasculinoRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/acessorios': typeof AcessoriosRoute
+  '/carrinho': typeof CarrinhoRoute
   '/colecoes': typeof ColecoesRoute
   '/feminino': typeof FemininoRoute
   '/masculino': typeof MasculinoRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/acessorios'
+    | '/carrinho'
     | '/colecoes'
     | '/feminino'
     | '/masculino'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/acessorios'
+    | '/carrinho'
     | '/colecoes'
     | '/feminino'
     | '/masculino'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/acessorios'
+    | '/carrinho'
     | '/colecoes'
     | '/feminino'
     | '/masculino'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AcessoriosRoute: typeof AcessoriosRoute
+  CarrinhoRoute: typeof CarrinhoRoute
   ColecoesRoute: typeof ColecoesRoute
   FemininoRoute: typeof FemininoRoute
   MasculinoRoute: typeof MasculinoRoute
@@ -131,6 +144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ColecoesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/carrinho': {
+      id: '/carrinho'
+      path: '/carrinho'
+      fullPath: '/carrinho'
+      preLoaderRoute: typeof CarrinhoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/acessorios': {
       id: '/acessorios'
       path: '/acessorios'
@@ -158,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AcessoriosRoute: AcessoriosRoute,
+  CarrinhoRoute: CarrinhoRoute,
   ColecoesRoute: ColecoesRoute,
   FemininoRoute: FemininoRoute,
   MasculinoRoute: MasculinoRoute,
@@ -166,3 +187,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
