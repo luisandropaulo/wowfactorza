@@ -14,6 +14,7 @@ import { Route as FemininoRouteImport } from './routes/feminino'
 import { Route as ColecoesRouteImport } from './routes/colecoes'
 import { Route as AcessoriosRouteImport } from './routes/acessorios'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProdutoSlugRouteImport } from './routes/produto.$slug'
 
 const MasculinoRoute = MasculinoRouteImport.update({
   id: '/masculino',
@@ -40,6 +41,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProdutoSlugRoute = ProdutoSlugRouteImport.update({
+  id: '/produto/$slug',
+  path: '/produto/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/colecoes': typeof ColecoesRoute
   '/feminino': typeof FemininoRoute
   '/masculino': typeof MasculinoRoute
+  '/produto/$slug': typeof ProdutoSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/colecoes': typeof ColecoesRoute
   '/feminino': typeof FemininoRoute
   '/masculino': typeof MasculinoRoute
+  '/produto/$slug': typeof ProdutoSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,12 +70,25 @@ export interface FileRoutesById {
   '/colecoes': typeof ColecoesRoute
   '/feminino': typeof FemininoRoute
   '/masculino': typeof MasculinoRoute
+  '/produto/$slug': typeof ProdutoSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/acessorios' | '/colecoes' | '/feminino' | '/masculino'
+  fullPaths:
+    | '/'
+    | '/acessorios'
+    | '/colecoes'
+    | '/feminino'
+    | '/masculino'
+    | '/produto/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/acessorios' | '/colecoes' | '/feminino' | '/masculino'
+  to:
+    | '/'
+    | '/acessorios'
+    | '/colecoes'
+    | '/feminino'
+    | '/masculino'
+    | '/produto/$slug'
   id:
     | '__root__'
     | '/'
@@ -75,6 +96,7 @@ export interface FileRouteTypes {
     | '/colecoes'
     | '/feminino'
     | '/masculino'
+    | '/produto/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -83,6 +105,7 @@ export interface RootRouteChildren {
   ColecoesRoute: typeof ColecoesRoute
   FemininoRoute: typeof FemininoRoute
   MasculinoRoute: typeof MasculinoRoute
+  ProdutoSlugRoute: typeof ProdutoSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -122,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/produto/$slug': {
+      id: '/produto/$slug'
+      path: '/produto/$slug'
+      fullPath: '/produto/$slug'
+      preLoaderRoute: typeof ProdutoSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -131,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   ColecoesRoute: ColecoesRoute,
   FemininoRoute: FemininoRoute,
   MasculinoRoute: MasculinoRoute,
+  ProdutoSlugRoute: ProdutoSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
