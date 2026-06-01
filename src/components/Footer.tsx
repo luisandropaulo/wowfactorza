@@ -33,6 +33,7 @@ export function Footer() {
             <li><Link to="/contacto" className="hover:text-gold">Trocas & devoluções</Link></li>
             <li><Link to="/contacto" className="hover:text-gold">Envios</Link></li>
             <li><Link to="/contacto" className="hover:text-gold">FAQ</Link></li>
+            <li><Link to="/admin" className="hover:text-gold">Admin</Link></li>
           </ul>
         </div>
         <div>

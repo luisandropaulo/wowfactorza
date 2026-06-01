@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useWishlist } from "@/stores/shop";
-import { products } from "@/data/products";
+import { useCatalog } from "@/stores/admin";
 import { ProductCard } from "@/components/ProductCard";
 import { Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,7 @@ export const Route = createFileRoute("/favoritos")({
   head: () => ({ meta: [{ title: "Favoritos — Ubuntu Wear" }, { name: "description", content: "Os seus produtos favoritos." }] }),
   component: () => {
     const ids = useWishlist((s) => s.ids);
-    const items = products.filter((p) => ids.includes(p.id));
+    const items = useCatalog().filter((p) => ids.includes(p.id));
     return (
       <div className="container-luxe py-12">
         <h1 className="font-display text-4xl">Favoritos</h1>

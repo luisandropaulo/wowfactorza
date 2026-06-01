@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProductGrid } from "@/components/ProductGrid";
-import { products } from "@/data/products";
+import { useCatalog } from "@/stores/admin";
 
 export const Route = createFileRoute("/acessorios")({
   head: () => ({
@@ -12,5 +12,10 @@ export const Route = createFileRoute("/acessorios")({
     ],
     links: [{ rel: "canonical", href: "/acessorios" }],
   }),
-  component: () => <ProductGrid items={products.filter((p) => p.category === "acessorios")} title="Acessórios" subtitle="Os detalhes que contam tudo." />,
+  component: AcessoriosPage,
 });
+
+function AcessoriosPage() {
+  const items = useCatalog().filter((p) => p.category === "acessorios");
+  return <ProductGrid items={items} title="Acessórios" subtitle="Os detalhes que contam tudo." />;
+}

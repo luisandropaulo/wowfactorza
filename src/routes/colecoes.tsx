@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProductGrid } from "@/components/ProductGrid";
-import { products } from "@/data/products";
+import { useCatalog } from "@/stores/admin";
 
 export const Route = createFileRoute("/colecoes")({
   head: () => ({
@@ -12,5 +12,10 @@ export const Route = createFileRoute("/colecoes")({
     ],
     links: [{ rel: "canonical", href: "/colecoes" }],
   }),
-  component: () => <ProductGrid items={products} title="Coleções" subtitle="Cada peça conta uma história. Encontre a sua." />,
+  component: ColecoesPage,
 });
+
+function ColecoesPage() {
+  const items = useCatalog();
+  return <ProductGrid items={items} title="Coleções" subtitle="Cada peça conta uma história. Encontre a sua." />;
+}

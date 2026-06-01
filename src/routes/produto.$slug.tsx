@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getProductBySlug, getRelated, formatPrice, type Product } from "@/data/products";
+import { formatPrice, type Product } from "@/data/products";
+import { getProductBySlugLive, getRelatedLive } from "@/stores/admin";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/ProductCard";
@@ -11,7 +12,7 @@ import { motion } from "framer-motion";
 
 export const Route = createFileRoute("/produto/$slug")({
   loader: ({ params }) => {
-    const product = getProductBySlug(params.slug);
+    const product = getProductBySlugLive(params.slug);
     if (!product) throw notFound();
     return { product };
   },
@@ -41,7 +42,7 @@ function ProductPage() {
   const [zoom, setZoom] = useState(false);
   const add = useCart((s) => s.add);
   const { has, toggle } = useWishlist();
-  const related = getRelated(product);
+  const related = getRelatedLive(product);
 
   const handleAdd = () => {
     add({ id: product.id, slug: product.slug, name: product.name, price: product.price, image: product.image, size, color, quantity: qty });
