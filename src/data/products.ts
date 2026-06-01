@@ -4,6 +4,14 @@ import p3 from "@/assets/p3.jpg";
 import p4 from "@/assets/p4.jpg";
 import p5 from "@/assets/p5.jpg";
 import p6 from "@/assets/p6.jpg";
+import kimono1 from "@/assets/feminino/1_kimono.jpg.asset.json";
+import kimono2 from "@/assets/feminino/2_kimono.jpg.asset.json";
+import pindale1 from "@/assets/feminino/1_pindale-top-skirt.jpg.asset.json";
+import pindale4 from "@/assets/feminino/4_pindale-top-skirt.jpg.asset.json";
+import green2 from "@/assets/feminino/2_green-skirt.jpg.asset.json";
+import green4 from "@/assets/feminino/4_green-skirt.jpg.asset.json";
+import busin1 from "@/assets/feminino/1_busin-suit.jpg.asset.json";
+import busin2 from "@/assets/feminino/2_busin-suit.jpg.asset.json";
 
 export type Category = "masculino" | "feminino" | "infantil" | "acessorios";
 
@@ -35,56 +43,34 @@ const collections = ["Heritage", "Sahara", "Kente Royale", "Afro Moderno", "Ubun
 
 const seeds: Array<{ name: string; category: Category; price: number; img: number; desc: string }> = [
   { name: "Camisa Dashiki Imperial", category: "masculino", price: 14900, img: 0, desc: "Camisa Dashiki em algodão premium com bordados dourados feitos à mão." },
-  { name: "Vestido Ankara Sahara", category: "feminino", price: 22500, img: 1, desc: "Vestido longo em tecido Ankara, corte fluido inspirado nas dunas do Sahara." },
   { name: "Blazer Kente Royale", category: "masculino", price: 38900, img: 2, desc: "Blazer estruturado em tecido Kente, alfaiataria contemporânea." },
   { name: "Turbante Yara Ouro", category: "acessorios", price: 6500, img: 3, desc: "Turbante artesanal com estampa geométrica e fio dourado." },
   { name: "Sandália Tribal Zuri", category: "acessorios", price: 8900, img: 4, desc: "Sandália em couro natural com missangas africanas." },
-  { name: "Jaqueta Bogolan Heritage", category: "feminino", price: 28900, img: 5, desc: "Jaqueta em mud cloth maliano, peça de coleção." },
   { name: "Camisa Adire Ocean", category: "masculino", price: 17500, img: 0, desc: "Camisa em tecido Adire tingido à mão." },
-  { name: "Vestido Wax Floral", category: "feminino", price: 19900, img: 1, desc: "Vestido midi em wax print com cintura marcada." },
   { name: "Conjunto Kente Júnior", category: "infantil", price: 11900, img: 2, desc: "Conjunto infantil em mini-Kente, conforto e estilo." },
   { name: "Bolsa Couro Mali", category: "acessorios", price: 15900, img: 3, desc: "Bolsa em couro vegetal com costura artesanal." },
-  { name: "Macacão Ubuntu", category: "feminino", price: 24500, img: 5, desc: "Macacão fluido em tecido sustentável." },
   { name: "Túnica Senegal Nights", category: "masculino", price: 16900, img: 0, desc: "Túnica longa com bordados pretos e dourados." },
   { name: "Brincos Ouro Tuareg", category: "acessorios", price: 4900, img: 3, desc: "Brincos circulares em latão dourado." },
-  { name: "Vestido Festa Lagos", category: "feminino", price: 32900, img: 1, desc: "Vestido de festa com mangas estruturadas." },
-  { name: "Pantalona Wax Sunrise", category: "feminino", price: 18500, img: 5, desc: "Pantalona alta com estampa solar." },
   { name: "Camisa Print Savanna", category: "masculino", price: 13900, img: 0, desc: "Camisa manga curta com estampa savana." },
   { name: "Lenço Quadrado Nairobi", category: "acessorios", price: 3900, img: 3, desc: "Lenço de seda com print exclusivo." },
-  { name: "Vestido Curto Marrakech", category: "feminino", price: 17900, img: 1, desc: "Vestido curto com decote envelope." },
   { name: "Camisa Mini Ankara", category: "infantil", price: 7900, img: 0, desc: "Camisa infantil com estampa Ankara reduzida." },
-  { name: "Saia Lápis Ubuntu", category: "feminino", price: 14500, img: 5, desc: "Saia lápis em wax com fenda lateral." },
   { name: "Sapatênis Mandela", category: "acessorios", price: 19900, img: 4, desc: "Sapatênis em couro com detalhes em tecido africano." },
-  { name: "Vestido Noiva Ashanti", category: "feminino", price: 89900, img: 1, desc: "Vestido cerimonial com bordados dourados." },
-  { name: "Blazer Curto Cocoa", category: "feminino", price: 27500, img: 2, desc: "Blazer curto em cor cacau com botões dourados." },
   { name: "Camisa Polo Tribal", category: "masculino", price: 11900, img: 0, desc: "Polo em piquet com detalhes tribais." },
   { name: "Vestido Infantil Festa", category: "infantil", price: 13500, img: 1, desc: "Vestido de festa infantil em wax cintilante." },
   { name: "Bracelete Ouro Maasai", category: "acessorios", price: 5900, img: 3, desc: "Bracelete inspirado nas joias Maasai." },
-  { name: "Casaco Longo Sahel", category: "feminino", price: 42900, img: 5, desc: "Casaco longo com gola alta e bordados." },
   { name: "Camisa Linho Calabar", category: "masculino", price: 15900, img: 0, desc: "Camisa de linho com gola padre." },
-  { name: "Vestido Slip Bronze", category: "feminino", price: 21900, img: 1, desc: "Vestido slip acetinado em bronze." },
   { name: "Conjunto Bebé Ubuntu", category: "infantil", price: 9900, img: 2, desc: "Conjunto para bebés em algodão orgânico." },
   { name: "Colar Múltiplo Ouro", category: "acessorios", price: 7500, img: 3, desc: "Colar de camadas em banho de ouro." },
-  { name: "Vestido Tubinho Noir", category: "feminino", price: 19500, img: 1, desc: "Vestido tubinho preto com detalhe dourado." },
-  { name: "Camisa Manga Bufante", category: "feminino", price: 13900, img: 5, desc: "Camisa feminina com manga bufante." },
   { name: "Bermuda Print Lagos", category: "masculino", price: 9900, img: 0, desc: "Bermuda com estampa contemporânea." },
   { name: "Tênis Couro Premium", category: "acessorios", price: 24900, img: 4, desc: "Tênis em couro com detalhes em wax." },
-  { name: "Vestido Plissado Sun", category: "feminino", price: 23500, img: 1, desc: "Vestido plissado em laranja queimado." },
   { name: "Camisa Smoking Royale", category: "masculino", price: 32900, img: 2, desc: "Camisa social com peitilho bordado." },
-  { name: "Saia Midi Wax Bloom", category: "feminino", price: 16900, img: 5, desc: "Saia midi rodada com estampa floral." },
   { name: "Calça Alfaiataria Bronze", category: "masculino", price: 22900, img: 2, desc: "Calça de alfaiataria em tom bronze." },
-  { name: "Vestido Curto Glow", category: "feminino", price: 18900, img: 1, desc: "Vestido curto com brilho discreto." },
   { name: "Camisa Infantil Heritage", category: "infantil", price: 8500, img: 0, desc: "Camisa para crianças em wax suave." },
   { name: "Cinto Couro Trançado", category: "acessorios", price: 4500, img: 3, desc: "Cinto em couro trançado à mão." },
-  { name: "Vestido Convidada VIP", category: "feminino", price: 36900, img: 1, desc: "Vestido para convidada com cauda." },
   { name: "Camisa Estampa Geo", category: "masculino", price: 14500, img: 0, desc: "Camisa com padrão geométrico." },
-  { name: "Macacão Wide Leg", category: "feminino", price: 26500, img: 5, desc: "Macacão wide leg em wax navy." },
   { name: "Conjunto Coordenado Royal", category: "masculino", price: 44900, img: 2, desc: "Conjunto coordenado camisa e calça." },
-  { name: "Vestido Romântico Rose", category: "feminino", price: 22900, img: 1, desc: "Vestido romântico com babados." },
   { name: "Mochila Couro Étnica", category: "acessorios", price: 18900, img: 3, desc: "Mochila em couro com detalhe tribal." },
   { name: "Camisa Linho Branca", category: "masculino", price: 13900, img: 0, desc: "Camisa branca em linho premium." },
-  { name: "Vestido Festa Ouro", category: "feminino", price: 38900, img: 1, desc: "Vestido de festa com paetês dourados." },
-  { name: "Vestido Curto Kente", category: "feminino", price: 19900, img: 5, desc: "Vestido curto em Kente moderno." },
   { name: "Boné Ankara Street", category: "acessorios", price: 3500, img: 3, desc: "Boné em wax com viseira curva." },
 ];
 
@@ -97,7 +83,7 @@ function slugify(s: string) {
     .replace(/(^-|-$)/g, "");
 }
 
-export const products: Product[] = seeds.map((s, i) => {
+const seedProducts: Product[] = seeds.map((s, i) => {
   const img = images[s.img % images.length];
   return {
     id: `UW-${(i + 1).toString().padStart(4, "0")}`,
@@ -106,7 +92,6 @@ export const products: Product[] = seeds.map((s, i) => {
     category: s.category,
     collection: collections[i % collections.length],
     price: s.price,
-    oldPrice: i % 4 === 0 ? Math.round(s.price * 1.25) : undefined,
     rating: 4 + Math.round(Math.random() * 10) / 10,
     reviews: 12 + ((i * 7) % 220),
     colors: baseColors.slice(0, 3 + (i % 3)),
@@ -120,6 +105,86 @@ export const products: Product[] = seeds.map((s, i) => {
     tags: [s.category, collections[i % collections.length]],
   };
 });
+
+const femininoProducts: Product[] = [
+  {
+    id: "UW-F-001",
+    slug: "kimono-ubuntu-noir",
+    name: "Kimono Ubuntu Noir",
+    category: "feminino",
+    collection: "Heritage",
+    price: 32900,
+    rating: 4.9,
+    reviews: 87,
+    colors: ["#0B0B0B", "#1F2937"],
+    sizes: ["S", "M", "L", "XL"],
+    stock: 12,
+    image: kimono1.url,
+    gallery: [kimono1.url, kimono2.url],
+    description: "Kimono longo em tecido africano com estampa estrelar central. Caimento fluido, mangas amplas e gola padre. Peça versátil para ocasiões especiais ou street style contemporâneo.",
+    isNew: true,
+    isBestseller: true,
+    tags: ["feminino", "kimono", "heritage"],
+  },
+  {
+    id: "UW-F-002",
+    slug: "conjunto-pindale-top-skirt",
+    name: "Pindalé Top & Skirt",
+    category: "feminino",
+    collection: "Afro Moderno",
+    price: 28500,
+    rating: 4.8,
+    reviews: 64,
+    colors: ["#0B0B0B", "#FFFFFF"],
+    sizes: ["XS", "S", "M", "L"],
+    stock: 9,
+    image: pindale1.url,
+    gallery: [pindale1.url, pindale4.url],
+    description: "Conjunto Pindalé composto por top com decote em coração e cristais e saia midi com fenda lateral marcante. Estampa estrelar exclusiva em preto e branco.",
+    isNew: true,
+    tags: ["feminino", "conjunto", "afro-moderno"],
+  },
+  {
+    id: "UW-F-003",
+    slug: "saia-green-leaf-ankara",
+    name: "Green Skirt Leaf Ankara",
+    category: "feminino",
+    collection: "Ubuntu Spirit",
+    price: 18900,
+    rating: 4.7,
+    reviews: 52,
+    colors: ["#1F4E3D", "#5BA86B"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    stock: 18,
+    image: green4.url,
+    gallery: [green4.url, green2.url],
+    description: "Saia curta com estampa em folhas geométricas verdes sobre fundo escuro. Cintura alta, fenda discreta e caimento estruturado em wax premium.",
+    isNew: true,
+    isBestseller: true,
+    tags: ["feminino", "saia", "ubuntu-spirit"],
+  },
+  {
+    id: "UW-F-004",
+    slug: "busin-suit-terracota",
+    name: "Busin Suit Terracota",
+    category: "feminino",
+    collection: "Kente Royale",
+    price: 56900,
+    rating: 5.0,
+    reviews: 41,
+    colors: ["#C2542A", "#E8722E"],
+    sizes: ["S", "M", "L", "XL"],
+    stock: 7,
+    image: busin1.url,
+    gallery: [busin1.url, busin2.url],
+    description: "Conjunto Busin Suit em tecido brocado terracota com brilho acetinado. Casaco longo com detalhe branco contrastante e calça wide leg. Alfaiataria contemporânea de gala.",
+    isNew: true,
+    isBestseller: true,
+    tags: ["feminino", "conjunto", "kente-royale"],
+  },
+];
+
+export const products: Product[] = [...femininoProducts, ...seedProducts];
 
 export const categoryLabels: Record<Category, string> = {
   masculino: "Masculino",
