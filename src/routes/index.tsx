@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Truck, Shield, RefreshCw, Headphones, ArrowRight, Star } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
-import { products } from "@/data/products";
+import { useCatalog, useSettings } from "@/stores/admin";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -47,8 +47,10 @@ const testimonials = [
 ];
 
 function Index() {
-  const featured = products.slice(0, 8);
-  const newCollection = products.slice(8, 14);
+  const catalog = useCatalog();
+  const settings = useSettings();
+  const featured = catalog.slice(0, 8);
+  const newCollection = catalog.slice(8, 14);
 
   return (
     <div className="-mt-20">
@@ -67,13 +69,13 @@ function Index() {
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.8 }}
             className="font-display text-5xl leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl max-w-4xl"
           >
-            Vista a Cultura.<br /><span className="text-gold italic">Expresse a Identidade.</span>
+            {settings.heroTitle}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
             className="mt-6 max-w-xl text-base text-white/80 md:text-lg"
           >
-            Moda africana contemporânea para quem carrega orgulho, elegância e autenticidade.
+            {settings.heroSubtitle}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProductGrid } from "@/components/ProductGrid";
-import { products } from "@/data/products";
+import { useCatalog } from "@/stores/admin";
 
 export const Route = createFileRoute("/feminino")({
   head: () => ({
@@ -12,5 +12,10 @@ export const Route = createFileRoute("/feminino")({
     ],
     links: [{ rel: "canonical", href: "/feminino" }],
   }),
-  component: () => <ProductGrid items={products.filter((p) => p.category === "feminino")} title="Feminino" subtitle="Liberdade, brilho e ancestralidade." />,
+  component: FemininoPage,
 });
+
+function FemininoPage() {
+  const items = useCatalog().filter((p) => p.category === "feminino");
+  return <ProductGrid items={items} title="Feminino" subtitle="Liberdade, brilho e ancestralidade." />;
+}
