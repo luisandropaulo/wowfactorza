@@ -5,10 +5,10 @@ import { useCatalog } from "@/stores/admin";
 export const Route = createFileRoute("/feminino")({
   head: () => ({
     meta: [
-      { title: "Feminino — Ubuntu Wear" },
+      { title: "Feminino — Wow Factor" },
       { name: "description", content: "Vestidos, macacões e peças femininas em Ankara, wax e tecidos africanos premium." },
-      { property: "og:title", content: "Feminino — Ubuntu Wear" },
-      { property: "og:description", content: "Coleção feminina Ubuntu Wear." },
+      { property: "og:title", content: "Feminino — Wow Factor" },
+      { property: "og:description", content: "Coleção feminina Wow Factor." },
     ],
     links: [{ rel: "canonical", href: "/feminino" }],
   }),

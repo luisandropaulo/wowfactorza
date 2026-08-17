@@ -6,7 +6,7 @@ import { Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/favoritos")({
-  head: () => ({ meta: [{ title: "Favoritos — Ubuntu Wear" }, { name: "description", content: "Os seus produtos favoritos." }] }),
+  head: () => ({ meta: [{ title: "Favoritos — Wow Factor" }, { name: "description", content: "Os seus produtos favoritos." }] }),
   component: () => {
     const ids = useWishlist((s) => s.ids);
     const items = useCatalog().filter((p) => ids.includes(p.id));

@@ -69,7 +69,7 @@ export const useCart = create<CartState>()(
       total: () => Math.max(0, get().subtotal() - get().discount() + get().shipping()),
       count: () => get().items.reduce((a, i) => a + i.quantity, 0),
     }),
-    { name: "ubuntu-cart" },
+    { name: "wf-cart" },
   ),
 );
 
@@ -89,7 +89,7 @@ export const useWishlist = create<WishlistState>()(
       has: (id) => get().ids.includes(id),
       clear: () => set({ ids: [] }),
     }),
-    { name: "ubuntu-wishlist" },
+    { name: "wf-wishlist" },
   ),
 );
 
@@ -115,7 +115,7 @@ export const useUI = create<UIState>()(
       searchOpen: false,
       setSearchOpen: (v) => set({ searchOpen: v }),
     }),
-    { name: "ubuntu-ui" },
+    { name: "wf-ui" },
   ),
 );
 
@@ -135,6 +135,6 @@ export const useAuth = create<AuthState>()(
       login: (email, name) => set({ user: { email, name: name ?? email.split("@")[0] } }),
       logout: () => set({ user: null }),
     }),
-    { name: "ubuntu-auth" },
+    { name: "wf-auth" },
   ),
 );

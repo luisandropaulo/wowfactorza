@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
-      { title: "Blog — Ubuntu Wear" },
-      { name: "description", content: "Cultura, tendências e moda africana no blog Ubuntu Wear." },
-      { property: "og:title", content: "Blog — Ubuntu Wear" },
+      { title: "Blog — Wow Factor" },
+      { name: "description", content: "Cultura, tendências e moda africana no blog Wow Factor." },
+      { property: "og:title", content: "Blog — Wow Factor" },
       { property: "og:description", content: "Histórias e tendências da moda africana." },
     ],
     links: [{ rel: "canonical", href: "/blog" }],

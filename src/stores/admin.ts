@@ -28,18 +28,18 @@ export interface SiteSettings {
 }
 
 const defaultSettings: SiteSettings = {
-  brandName: "Ubuntu Wear",
+  brandName: "Wow Factor",
   tagline: "Moda africana contemporânea",
   heroTitle: "Vista a sua ancestralidade",
   heroSubtitle: "Coleção 2026 inspirada na riqueza cultural do continente africano.",
   heroCta: "Descobrir coleção",
-  aboutShort: "Ubuntu Wear nasce do encontro entre tradição africana e design contemporâneo.",
-  contactEmail: "ola@ubuntuwear.com",
+  aboutShort: "Wow Factor nasce do encontro entre tradição africana e design contemporâneo.",
+  contactEmail: "ola@wowfactor.com",
   contactPhone: "+244 923 000 000",
   contactAddress: "Luanda, Angola",
   whatsapp: "+244923000000",
-  instagram: "@ubuntuwear",
-  facebook: "ubuntuwear",
+  instagram: "@wowfactor",
+  facebook: "wowfactor",
   freeShippingThreshold: 50000,
   shippingFlatRate: 2500,
   currency: "AOA",
@@ -99,7 +99,7 @@ export const useAdmin = create<AdminState>()(
       resetAll: () => set({ products: seedCatalog, settings: defaultSettings, payments: defaultPayments }),
     }),
     {
-      name: "ubuntu-admin",
+      name: "wf-admin",
       version: 2,
     },
   ),

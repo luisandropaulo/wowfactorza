@@ -8,7 +8,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/carrinho")({
-  head: () => ({ meta: [{ title: "Carrinho — Ubuntu Wear" }, { name: "description", content: "Reveja os seus produtos antes de finalizar a compra." }] }),
+  head: () => ({ meta: [{ title: "Carrinho — Wow Factor" }, { name: "description", content: "Reveja os seus produtos antes de finalizar a compra." }] }),
   component: CartPage,
 });
 

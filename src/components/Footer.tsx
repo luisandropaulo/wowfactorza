@@ -40,7 +40,7 @@ export function Footer() {
           <h4 className="mb-4 text-sm font-semibold uppercase tracking-widest text-gold">Contacto</h4>
           <ul className="space-y-3 text-sm text-white/70">
             <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-gold" /> +244 923 000 000</li>
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-gold" /> hello@ubuntuwear.com</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-gold" /> hello@wowfactor.com</li>
             <li className="flex items-start gap-2"><MapPin className="h-4 w-4 mt-0.5 text-gold" /> Rua da Missão, Luanda, Angola</li>
           </ul>
           <form
@@ -61,7 +61,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 py-6 text-center text-xs text-white/50">
-        © {new Date().getFullYear()} Ubuntu Wear · Vista a cultura. Expresse a identidade.
+        © {new Date().getFullYear()} Wow Factor · Vista a cultura. Expresse a identidade.
       </div>
     </footer>
   );

@@ -16,9 +16,9 @@ import catAcc from "@/assets/cat-accessories.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ubuntu Wear — Vista a Cultura. Expresse a Identidade." },
+      { title: "Wow Factor — Vista a Cultura. Expresse a Identidade." },
       { name: "description", content: "Moda africana contemporânea, premium e autêntica. Coleções exclusivas em Ankara, Kente, Bogolan e mais." },
-      { property: "og:title", content: "Ubuntu Wear — Moda Africana Premium" },
+      { property: "og:title", content: "Wow Factor — Moda Africana Premium" },
       { property: "og:description", content: "Coleções exclusivas inspiradas na cultura africana contemporânea." },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -56,7 +56,7 @@ function Index() {
     <div className="-mt-20">
       {/* HERO */}
       <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
-        <img src={hero} alt="Modelos vestindo coleção Ubuntu Wear" width={1920} height={1080} className="absolute inset-0 h-full w-full object-cover" />
+        <img src={hero} alt="Modelos vestindo coleção Wow Factor" width={1920} height={1080} className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
         <div className="container-luxe relative z-10 flex h-full flex-col justify-end pb-24 text-white">
           <motion.p

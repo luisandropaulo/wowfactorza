@@ -63,7 +63,7 @@
 
 :root {
   --radius: 0.25rem;
-  /* Ubuntu Wear — Cream background, dark ink, gold accent */
+  /* Wow Factor — Cream background, dark ink, gold accent */
   --background: oklch(0.97 0.015 85);          /* #F5F5DC cream */
   --foreground: oklch(0.18 0.015 270);         /* near #111827 */
   --card: oklch(0.99 0.005 85);

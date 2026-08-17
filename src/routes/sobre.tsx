@@ -5,10 +5,10 @@ import hero from "@/assets/hero.jpg";
 export const Route = createFileRoute("/sobre")({
   head: () => ({
     meta: [
-      { title: "Sobre nós — Ubuntu Wear" },
-      { name: "description", content: "A história, missão e visão da Ubuntu Wear." },
-      { property: "og:title", content: "Sobre nós — Ubuntu Wear" },
-      { property: "og:description", content: "Conheça a história Ubuntu Wear." },
+      { title: "Sobre nós — Wow Factor" },
+      { name: "description", content: "A história, missão e visão da Wow Factor." },
+      { property: "og:title", content: "Sobre nós — Wow Factor" },
+      { property: "og:description", content: "Conheça a história Wow Factor." },
     ],
     links: [{ rel: "canonical", href: "/sobre" }],
   }),
@@ -27,7 +27,7 @@ function About() {
   return (
     <div>
       <section className="relative h-[60vh] min-h-[420px] -mt-20 overflow-hidden">
-        <img src={hero} alt="Ubuntu Wear" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={hero} alt="Wow Factor" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-black/60" />
         <div className="container-luxe relative z-10 flex h-full items-end pb-16 text-white">
           <motion.h1 initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="font-display text-5xl md:text-7xl max-w-3xl">A nossa história começa em África</motion.h1>

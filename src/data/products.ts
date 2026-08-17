@@ -86,7 +86,7 @@ function slugify(s: string) {
 const seedProducts: Product[] = seeds.map((s, i) => {
   const img = images[s.img % images.length];
   return {
-    id: `UW-${(i + 1).toString().padStart(4, "0")}`,
+    id: `WF-${(i + 1).toString().padStart(4, "0")}`,
     slug: `${slugify(s.name)}-${i + 1}`,
     name: s.name,
     category: s.category,
@@ -108,8 +108,8 @@ const seedProducts: Product[] = seeds.map((s, i) => {
 
 const femininoProducts: Product[] = [
   {
-    id: "UW-F-001",
-    slug: "kimono-ubuntu-noir",
+    id: "WF-F-001",
+    slug: "kimono-wf-noir",
     name: "Kimono Ubuntu Noir",
     category: "feminino",
     collection: "Heritage",
@@ -127,7 +127,7 @@ const femininoProducts: Product[] = [
     tags: ["feminino", "kimono", "heritage"],
   },
   {
-    id: "UW-F-002",
+    id: "WF-F-002",
     slug: "conjunto-pindale-top-skirt",
     name: "Pindalé Top & Skirt",
     category: "feminino",
@@ -145,7 +145,7 @@ const femininoProducts: Product[] = [
     tags: ["feminino", "conjunto", "afro-moderno"],
   },
   {
-    id: "UW-F-003",
+    id: "WF-F-003",
     slug: "saia-green-leaf-ankara",
     name: "Green Skirt Leaf Ankara",
     category: "feminino",
@@ -161,10 +161,10 @@ const femininoProducts: Product[] = [
     description: "Saia curta com estampa em folhas geométricas verdes sobre fundo escuro. Cintura alta, fenda discreta e caimento estruturado em wax premium.",
     isNew: true,
     isBestseller: true,
-    tags: ["feminino", "saia", "ubuntu-spirit"],
+    tags: ["feminino", "saia", "wf-spirit"],
   },
   {
-    id: "UW-F-004",
+    id: "WF-F-004",
     slug: "busin-suit-terracota",
     name: "Busin Suit Terracota",
     category: "feminino",

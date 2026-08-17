@@ -17,8 +17,8 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Admin — Ubuntu Wear" },
-      { name: "description", content: "Painel de gestão de conteúdos Ubuntu Wear." },
+      { title: "Admin — Wow Factor" },
+      { name: "description", content: "Painel de gestão de conteúdos Wow Factor." },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -32,7 +32,7 @@ function AdminPage() {
         <div className="container-luxe flex items-center justify-between py-6">
           <div>
             <p className="text-[11px] uppercase tracking-[0.3em] text-gold">Painel administrativo</p>
-            <h1 className="font-display text-3xl">Gestão Ubuntu Wear</h1>
+            <h1 className="font-display text-3xl">Gestão Wow Factor</h1>
           </div>
           <div className="flex items-center gap-2">
             <Link to="/"><Button variant="outline" size="sm"><ExternalLink className="h-4 w-4" /> Ver loja</Button></Link>
@@ -70,7 +70,7 @@ function AdminPage() {
 
 function emptyProduct(): Product {
   return {
-    id: `UW-${Date.now()}`,
+    id: `WF-${Date.now()}`,
     slug: `novo-produto-${Date.now()}`,
     name: "Novo Produto",
     category: "feminino",

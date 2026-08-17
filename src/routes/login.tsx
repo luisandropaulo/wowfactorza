@@ -8,7 +8,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/login")({
-  head: () => ({ meta: [{ title: "Login — Ubuntu Wear" }, { name: "description", content: "Entre na sua conta Ubuntu Wear." }] }),
+  head: () => ({ meta: [{ title: "Login — Wow Factor" }, { name: "description", content: "Entre na sua conta Wow Factor." }] }),
   component: Login,
 });
 

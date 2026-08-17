@@ -9,9 +9,9 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/contacto")({
   head: () => ({
     meta: [
-      { title: "Contacto — Ubuntu Wear" },
+      { title: "Contacto — Wow Factor" },
       { name: "description", content: "Fale connosco. Estamos sempre disponíveis." },
-      { property: "og:title", content: "Contacto — Ubuntu Wear" },
+      { property: "og:title", content: "Contacto — Wow Factor" },
       { property: "og:description", content: "Fale connosco." },
     ],
     links: [{ rel: "canonical", href: "/contacto" }],
@@ -37,7 +37,7 @@ export const Route = createFileRoute("/contacto")({
         <div className="space-y-6">
           <div className="space-y-4 border border-border bg-card p-6">
             <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-gold" /> +244 923 000 000</div>
-            <div className="flex items-center gap-3"><Mail className="h-5 w-5 text-gold" /> hello@ubuntuwear.com</div>
+            <div className="flex items-center gap-3"><Mail className="h-5 w-5 text-gold" /> hello@wowfactor.com</div>
             <div className="flex items-start gap-3"><MapPin className="h-5 w-5 mt-0.5 text-gold" /> Rua da Missão, Luanda, Angola</div>
             <a href="https://wa.me/244923000000" target="_blank" rel="noopener" className="inline-block"><Button variant="outline">WhatsApp directo</Button></a>
           </div>

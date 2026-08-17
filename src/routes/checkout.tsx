@@ -10,7 +10,7 @@ import { Check } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/checkout")({
-  head: () => ({ meta: [{ title: "Checkout — Ubuntu Wear" }, { name: "description", content: "Finalize o seu pedido com segurança." }] }),
+  head: () => ({ meta: [{ title: "Checkout — Wow Factor" }, { name: "description", content: "Finalize o seu pedido com segurança." }] }),
   component: Checkout,
 });
 

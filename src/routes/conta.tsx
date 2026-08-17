@@ -5,7 +5,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useEffect } from "react";
 
 export const Route = createFileRoute("/conta")({
-  head: () => ({ meta: [{ title: "Minha conta — Ubuntu Wear" }, { name: "description", content: "Gerir os seus dados, pedidos e endereços." }] }),
+  head: () => ({ meta: [{ title: "Minha conta — Wow Factor" }, { name: "description", content: "Gerir os seus dados, pedidos e endereços." }] }),
   component: Account,
 });
 
