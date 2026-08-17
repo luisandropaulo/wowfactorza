@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAdmin } from "@/stores/admin";
+import { useOrders, orderStatusLabels, type OrderStatus } from "@/stores/orders";
 import { type Product, type Category, categoryLabels, formatPrice, collectionsList } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +12,7 @@ import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Pencil, Trash2, Search, ExternalLink, RotateCcw, Save, ShieldAlert, Package, Settings as SettingsIcon, FileText, CreditCard, Image as ImageIcon } from "lucide-react";
+import { Plus, Pencil, Trash2, Search, ExternalLink, RotateCcw, Save, ShieldAlert, Package, Settings as SettingsIcon, FileText, CreditCard, Image as ImageIcon, Receipt, Landmark } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin")({
@@ -49,13 +50,15 @@ function AdminPage() {
         </div>
 
         <Tabs defaultValue="products" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
+            <TabsTrigger value="orders"><Receipt className="h-4 w-4" /> Pedidos</TabsTrigger>
             <TabsTrigger value="products"><Package className="h-4 w-4" /> Produtos</TabsTrigger>
             <TabsTrigger value="content"><FileText className="h-4 w-4" /> Conteúdos</TabsTrigger>
             <TabsTrigger value="payments"><CreditCard className="h-4 w-4" /> Pagamentos</TabsTrigger>
             <TabsTrigger value="settings"><SettingsIcon className="h-4 w-4" /> Configurações</TabsTrigger>
           </TabsList>
 
+          <TabsContent value="orders"><OrdersTab /></TabsContent>
           <TabsContent value="products"><ProductsTab /></TabsContent>
           <TabsContent value="content"><ContentTab /></TabsContent>
           <TabsContent value="payments"><PaymentsTab /></TabsContent>
@@ -67,6 +70,85 @@ function AdminPage() {
 }
 
 /* ---------------- PRODUCTS ---------------- */
+
+function OrdersTab() {
+  const { orders, setStatus, setNote, removeOrder } = useOrders();
+  const [filter, setFilter] = useState<string>("all");
+  const list = orders.filter((o) => filter === "all" || o.status === filter);
+  const pending = orders.filter((o) => o.status === "pending").length;
+
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 className="font-display text-2xl">Pedidos</h2>
+          <p className="text-sm text-muted-foreground">
+            {orders.length} pedido(s) · {pending} a aguardar validação de pagamento.
+          </p>
+        </div>
+        <Select value={filter} onValueChange={setFilter}>
+          <SelectTrigger className="w-56"><SelectValue placeholder="Estado" /></SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Todos os estados</SelectItem>
+            {(Object.keys(orderStatusLabels) as OrderStatus[]).map((s) => (
+              <SelectItem key={s} value={s}>{orderStatusLabels[s]}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="grid gap-3">
+        {list.map((o) => (
+          <div key={o.id} className="space-y-3 rounded-sm border border-border bg-background p-5">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <p className="font-display text-lg">#{o.id} <Badge variant={o.status === "pending" ? "destructive" : "secondary"} className="ml-2">{orderStatusLabels[o.status]}</Badge></p>
+                <p className="text-sm text-muted-foreground">
+                  {new Date(o.createdAt).toLocaleString("pt-PT")} · {o.customer.name} · {o.customer.email} · {o.customer.phone}
+                </p>
+                <p className="text-sm text-muted-foreground">{o.customer.address}, {o.customer.city}, {o.customer.province}, {o.customer.country}</p>
+                <p className="text-sm text-muted-foreground">{o.shippingMethod}{o.proofRef ? ` · Comprovativo: ${o.proofRef}` : ""}</p>
+              </div>
+              <p className="font-display text-xl text-gold">{formatPrice(o.total)}</p>
+            </div>
+
+            <ul className="space-y-1 border-t border-border pt-3 text-sm text-muted-foreground">
+              {o.items.map((i) => (
+                <li key={i.id + i.size + i.color}>{i.quantity}× {i.name} ({i.size}) — {formatPrice(i.price * i.quantity)}</li>
+              ))}
+            </ul>
+
+            <div className="flex flex-wrap items-center gap-2 border-t border-border pt-3">
+              <Select value={o.status} onValueChange={(v) => { setStatus(o.id, v as OrderStatus); toast.success("Estado atualizado"); }}>
+                <SelectTrigger className="w-56"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  {(Object.keys(orderStatusLabels) as OrderStatus[]).map((s) => (
+                    <SelectItem key={s} value={s}>{orderStatusLabels[s]}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {o.status === "pending" && (
+                <Button size="sm" onClick={() => { setStatus(o.id, "paid"); toast.success("Pagamento validado"); }}>Validar pagamento</Button>
+              )}
+              <Input
+                className="max-w-xs"
+                placeholder="Nota interna…"
+                defaultValue={o.note ?? ""}
+                onBlur={(e) => setNote(o.id, e.target.value)}
+              />
+              <Button variant="ghost" size="icon" onClick={() => { if (confirm(`Eliminar pedido #${o.id}?`)) { removeOrder(o.id); toast.success("Pedido eliminado"); } }}>
+                <Trash2 className="h-4 w-4 text-destructive" />
+              </Button>
+            </div>
+          </div>
+        ))}
+        {list.length === 0 && (
+          <p className="rounded-sm border border-dashed border-border p-10 text-center text-muted-foreground">Sem pedidos para mostrar.</p>
+        )}
+      </div>
+    </div>
+  );
+}
 
 function emptyProduct(): Product {
   return {
