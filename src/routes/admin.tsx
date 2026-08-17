@@ -102,7 +102,10 @@ function OrdersTab() {
           <div key={o.id} className="space-y-3 rounded-sm border border-border bg-background p-5">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <p className="font-display text-lg">#{o.id} <Badge variant={o.status === "pending" ? "destructive" : "secondary"} className="ml-2">{orderStatusLabels[o.status]}</Badge></p>
+                <div className="flex items-center gap-2 font-display text-lg">
+                  #{o.id}
+                  <Badge variant={o.status === "pending" ? "destructive" : "secondary"}>{orderStatusLabels[o.status]}</Badge>
+                </div>
                 <p className="text-sm text-muted-foreground">
                   {new Date(o.createdAt).toLocaleString("pt-PT")} · {o.customer.name} · {o.customer.email} · {o.customer.phone}
                 </p>
