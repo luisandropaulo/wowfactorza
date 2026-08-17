@@ -448,7 +448,7 @@ function PaymentsTab() {
 /* ---------------- SETTINGS ---------------- */
 
 function SettingsTab() {
-  const { settings, updateSettings, resetAll } = useAdmin();
+  const { settings, updateSettings, resetAll, bankAccounts, upsertBankAccount, deleteBankAccount } = useAdmin();
   const [draft, setDraft] = useState(settings);
 
   return (
@@ -472,6 +472,34 @@ function SettingsTab() {
         <div className="grid gap-4 md:grid-cols-2">
           <Field label="Envio grátis acima de (AOA)"><Input type="number" value={draft.freeShippingThreshold} onChange={(e) => setDraft({ ...draft, freeShippingThreshold: Number(e.target.value) })} /></Field>
           <Field label="Taxa fixa de envio (AOA)"><Input type="number" value={draft.shippingFlatRate} onChange={(e) => setDraft({ ...draft, shippingFlatRate: Number(e.target.value) })} /></Field>
+        </div>
+      </div>
+
+      <div className="space-y-4 rounded-sm border border-border bg-background p-6">
+        <h2 className="flex items-center gap-2 font-display text-2xl"><Landmark className="h-5 w-5 text-gold" /> Coordenadas bancárias</h2>
+        <p className="text-sm text-muted-foreground">Contas apresentadas ao cliente no checkout para pagamento por transferência.</p>
+        <div className="grid gap-4 md:grid-cols-2">
+          <Field label="Email para comprovativos" className="md:col-span-2"><Input value={draft.proofEmail} onChange={(e) => setDraft({ ...draft, proofEmail: e.target.value })} /></Field>
+          <Field label="Instruções de pagamento" className="md:col-span-2"><Textarea rows={4} value={draft.paymentInstructions} onChange={(e) => setDraft({ ...draft, paymentInstructions: e.target.value })} /></Field>
+        </div>
+        <div className="space-y-4">
+          {bankAccounts.map((b) => (
+            <div key={b.id} className="grid gap-3 rounded-sm border border-border p-4 md:grid-cols-2">
+              <Field label="Banco"><Input value={b.bank} onChange={(e) => upsertBankAccount({ ...b, bank: e.target.value })} /></Field>
+              <Field label="Titular"><Input value={b.holder} onChange={(e) => upsertBankAccount({ ...b, holder: e.target.value })} /></Field>
+              <Field label="Nº de conta"><Input value={b.accountNumber} onChange={(e) => upsertBankAccount({ ...b, accountNumber: e.target.value })} /></Field>
+              <Field label="IBAN"><Input value={b.iban} onChange={(e) => upsertBankAccount({ ...b, iban: e.target.value })} /></Field>
+              <Field label="Moeda"><Input value={b.currency} onChange={(e) => upsertBankAccount({ ...b, currency: e.target.value })} /></Field>
+              <div className="flex items-end">
+                <Button variant="ghost" size="sm" onClick={() => { if (confirm(`Eliminar conta ${b.bank}?`)) { deleteBankAccount(b.id); toast.success("Conta removida"); } }}>
+                  <Trash2 className="h-4 w-4 text-destructive" /> Remover
+                </Button>
+              </div>
+            </div>
+          ))}
+          <Button variant="outline" onClick={() => upsertBankAccount({ id: `bank-${Date.now()}`, bank: "Novo banco", holder: settings.brandName, iban: "", accountNumber: "", currency: settings.currency })}>
+            <Plus className="h-4 w-4" /> Adicionar conta bancária
+          </Button>
         </div>
       </div>
 
