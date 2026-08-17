@@ -39,7 +39,7 @@ export interface Product {
 const images = [p1, p2, p3, p4, p5, p6];
 const baseColors = ["#D4AF37", "#111827", "#8B4513", "#F5F5DC", "#B22222", "#1F4E3D"];
 const baseSizes = ["XS", "S", "M", "L", "XL", "XXL"];
-const collections = ["Heritage", "Sahara", "Kente Royale", "Afro Moderno", "Ubuntu Spirit"];
+const collections = ["Heritage", "Sahara", "Kente Royale", "Afro Moderno", "WF Spirit"];
 
 const seeds: Array<{ name: string; category: Category; price: number; img: number; desc: string }> = [
   { name: "Camisa Dashiki Imperial", category: "masculino", price: 14900, img: 0, desc: "Camisa Dashiki em algodão premium com bordados dourados feitos à mão." },
@@ -59,7 +59,7 @@ const seeds: Array<{ name: string; category: Category; price: number; img: numbe
   { name: "Vestido Infantil Festa", category: "infantil", price: 13500, img: 1, desc: "Vestido de festa infantil em wax cintilante." },
   { name: "Bracelete Ouro Maasai", category: "acessorios", price: 5900, img: 3, desc: "Bracelete inspirado nas joias Maasai." },
   { name: "Camisa Linho Calabar", category: "masculino", price: 15900, img: 0, desc: "Camisa de linho com gola padre." },
-  { name: "Conjunto Bebé Ubuntu", category: "infantil", price: 9900, img: 2, desc: "Conjunto para bebés em algodão orgânico." },
+  { name: "Conjunto Bebé WF", category: "infantil", price: 9900, img: 2, desc: "Conjunto para bebés em algodão orgânico." },
   { name: "Colar Múltiplo Ouro", category: "acessorios", price: 7500, img: 3, desc: "Colar de camadas em banho de ouro." },
   { name: "Bermuda Print Lagos", category: "masculino", price: 9900, img: 0, desc: "Bermuda com estampa contemporânea." },
   { name: "Tênis Couro Premium", category: "acessorios", price: 24900, img: 4, desc: "Tênis em couro com detalhes em wax." },
@@ -86,7 +86,7 @@ function slugify(s: string) {
 const seedProducts: Product[] = seeds.map((s, i) => {
   const img = images[s.img % images.length];
   return {
-    id: `UW-${(i + 1).toString().padStart(4, "0")}`,
+    id: `WF-${(i + 1).toString().padStart(4, "0")}`,
     slug: `${slugify(s.name)}-${i + 1}`,
     name: s.name,
     category: s.category,
@@ -108,9 +108,9 @@ const seedProducts: Product[] = seeds.map((s, i) => {
 
 const femininoProducts: Product[] = [
   {
-    id: "UW-F-001",
-    slug: "kimono-ubuntu-noir",
-    name: "Kimono Ubuntu Noir",
+    id: "WF-F-001",
+    slug: "kimono-wf-noir",
+    name: "Kimono WF Noir",
     category: "feminino",
     collection: "Heritage",
     price: 32900,
@@ -127,7 +127,7 @@ const femininoProducts: Product[] = [
     tags: ["feminino", "kimono", "heritage"],
   },
   {
-    id: "UW-F-002",
+    id: "WF-F-002",
     slug: "conjunto-pindale-top-skirt",
     name: "Pindalé Top & Skirt",
     category: "feminino",
@@ -145,11 +145,11 @@ const femininoProducts: Product[] = [
     tags: ["feminino", "conjunto", "afro-moderno"],
   },
   {
-    id: "UW-F-003",
+    id: "WF-F-003",
     slug: "saia-green-leaf-ankara",
     name: "Green Skirt Leaf Ankara",
     category: "feminino",
-    collection: "Ubuntu Spirit",
+    collection: "WF Spirit",
     price: 18900,
     rating: 4.7,
     reviews: 52,
@@ -161,10 +161,10 @@ const femininoProducts: Product[] = [
     description: "Saia curta com estampa em folhas geométricas verdes sobre fundo escuro. Cintura alta, fenda discreta e caimento estruturado em wax premium.",
     isNew: true,
     isBestseller: true,
-    tags: ["feminino", "saia", "ubuntu-spirit"],
+    tags: ["feminino", "saia", "wf-spirit"],
   },
   {
-    id: "UW-F-004",
+    id: "WF-F-004",
     slug: "busin-suit-terracota",
     name: "Busin Suit Terracota",
     category: "feminino",

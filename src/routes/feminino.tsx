@@ -5,10 +5,10 @@ import { useCatalog } from "@/stores/admin";
 export const Route = createFileRoute("/feminino")({
   head: () => ({
     meta: [
-      { title: "Feminino — Ubuntu Wear" },
-      { name: "description", content: "Vestidos, macacões e peças femininas em Ankara, wax e tecidos africanos premium." },
-      { property: "og:title", content: "Feminino — Ubuntu Wear" },
-      { property: "og:description", content: "Coleção feminina Ubuntu Wear." },
+      { title: "Feminino — Wow Factor" },
+      { name: "description", content: "Vestidos, conjuntos e peças femininas streetwear: oversized, cropped e casual urbano." },
+      { property: "og:title", content: "Feminino — Wow Factor" },
+      { property: "og:description", content: "Streetwear feminino Wow Factor." },
     ],
     links: [{ rel: "canonical", href: "/feminino" }],
   }),
@@ -17,5 +17,5 @@ export const Route = createFileRoute("/feminino")({
 
 function FemininoPage() {
   const items = useCatalog().filter((p) => p.category === "feminino");
-  return <ProductGrid items={items} title="Feminino" subtitle="Liberdade, brilho e ancestralidade." />;
+  return <ProductGrid items={items} title="Feminino" subtitle="Liberdade, atitude e estilo urbano." />;
 }

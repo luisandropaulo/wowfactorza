@@ -3,15 +3,19 @@ import { Instagram, Facebook, Twitter, Mail, Phone, MapPin } from "lucide-react"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import logoAsset from "@/assets/wow-factor-logo.jpg.asset.json";
 
 export function Footer() {
   return (
     <footer className="mt-24 bg-secondary text-secondary-foreground">
       <div className="container-luxe grid gap-10 py-16 md:grid-cols-4">
         <div>
-          <h3 className="font-display text-2xl">Ubuntu<span className="text-gold">Wear</span></h3>
+          <div className="flex items-center gap-3">
+            <img src={logoAsset.url} alt="Wow Factor" width={44} height={44} className="h-11 w-11 rounded-sm object-cover" />
+            <h3 className="font-display text-2xl uppercase tracking-[0.2em]">Wow<span className="text-gold">Factor</span></h3>
+          </div>
           <p className="mt-4 text-sm text-white/70">
-            Moda africana contemporânea — orgulho, elegância e autenticidade em cada peça.
+            Streetwear jovem e contemporâneo — atitude, conforto e identidade em cada peça.
           </p>
           <div className="mt-6 flex gap-3">
             <a href="#" aria-label="Instagram" className="rounded-full border border-white/20 p-2 transition hover:border-gold hover:text-gold"><Instagram className="h-4 w-4" /></a>
@@ -40,7 +44,7 @@ export function Footer() {
           <h4 className="mb-4 text-sm font-semibold uppercase tracking-widest text-gold">Contacto</h4>
           <ul className="space-y-3 text-sm text-white/70">
             <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-gold" /> +244 923 000 000</li>
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-gold" /> hello@ubuntuwear.com</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-gold" /> hello@wowfactor.com</li>
             <li className="flex items-start gap-2"><MapPin className="h-4 w-4 mt-0.5 text-gold" /> Rua da Missão, Luanda, Angola</li>
           </ul>
           <form
@@ -49,7 +53,7 @@ export function Footer() {
               const fd = new FormData(e.currentTarget);
               const email = String(fd.get("email") || "");
               if (email) {
-                toast.success("Subscrição confirmada!", { description: "Obrigado por se juntar à família Ubuntu." });
+                toast.success("Subscrição confirmada!", { description: "Obrigado por se juntar à família Wow Factor." });
                 (e.currentTarget as HTMLFormElement).reset();
               }
             }}
@@ -61,7 +65,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 py-6 text-center text-xs text-white/50">
-        © {new Date().getFullYear()} Ubuntu Wear · Vista a cultura. Expresse a identidade.
+        © {new Date().getFullYear()} Wow Factor · Vista a cultura. Expresse a identidade.
       </div>
     </footer>
   );

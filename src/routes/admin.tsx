@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAdmin } from "@/stores/admin";
+import { useOrders, orderStatusLabels, type OrderStatus } from "@/stores/orders";
 import { type Product, type Category, categoryLabels, formatPrice, collectionsList } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,14 +12,14 @@ import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Pencil, Trash2, Search, ExternalLink, RotateCcw, Save, ShieldAlert, Package, Settings as SettingsIcon, FileText, CreditCard, Image as ImageIcon } from "lucide-react";
+import { Plus, Pencil, Trash2, Search, ExternalLink, RotateCcw, Save, ShieldAlert, Package, Settings as SettingsIcon, FileText, CreditCard, Image as ImageIcon, Receipt, Landmark } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Admin — Ubuntu Wear" },
-      { name: "description", content: "Painel de gestão de conteúdos Ubuntu Wear." },
+      { title: "Admin — Wow Factor" },
+      { name: "description", content: "Painel de gestão de conteúdos Wow Factor." },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -32,7 +33,7 @@ function AdminPage() {
         <div className="container-luxe flex items-center justify-between py-6">
           <div>
             <p className="text-[11px] uppercase tracking-[0.3em] text-gold">Painel administrativo</p>
-            <h1 className="font-display text-3xl">Gestão Ubuntu Wear</h1>
+            <h1 className="font-display text-3xl">Gestão Wow Factor</h1>
           </div>
           <div className="flex items-center gap-2">
             <Link to="/"><Button variant="outline" size="sm"><ExternalLink className="h-4 w-4" /> Ver loja</Button></Link>
@@ -49,13 +50,15 @@ function AdminPage() {
         </div>
 
         <Tabs defaultValue="products" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
+            <TabsTrigger value="orders"><Receipt className="h-4 w-4" /> Pedidos</TabsTrigger>
             <TabsTrigger value="products"><Package className="h-4 w-4" /> Produtos</TabsTrigger>
             <TabsTrigger value="content"><FileText className="h-4 w-4" /> Conteúdos</TabsTrigger>
             <TabsTrigger value="payments"><CreditCard className="h-4 w-4" /> Pagamentos</TabsTrigger>
             <TabsTrigger value="settings"><SettingsIcon className="h-4 w-4" /> Configurações</TabsTrigger>
           </TabsList>
 
+          <TabsContent value="orders"><OrdersTab /></TabsContent>
           <TabsContent value="products"><ProductsTab /></TabsContent>
           <TabsContent value="content"><ContentTab /></TabsContent>
           <TabsContent value="payments"><PaymentsTab /></TabsContent>
@@ -68,9 +71,91 @@ function AdminPage() {
 
 /* ---------------- PRODUCTS ---------------- */
 
+function OrdersTab() {
+  const { orders, setStatus, setNote, removeOrder } = useOrders();
+  const [filter, setFilter] = useState<string>("all");
+  const list = orders.filter((o) => filter === "all" || o.status === filter);
+  const pending = orders.filter((o) => o.status === "pending").length;
+
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 className="font-display text-2xl">Pedidos</h2>
+          <p className="text-sm text-muted-foreground">
+            {orders.length} pedido(s) · {pending} a aguardar validação de pagamento.
+          </p>
+        </div>
+        <Select value={filter} onValueChange={setFilter}>
+          <SelectTrigger className="w-56"><SelectValue placeholder="Estado" /></SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Todos os estados</SelectItem>
+            {(Object.keys(orderStatusLabels) as OrderStatus[]).map((s) => (
+              <SelectItem key={s} value={s}>{orderStatusLabels[s]}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="grid gap-3">
+        {list.map((o) => (
+          <div key={o.id} className="space-y-3 rounded-sm border border-border bg-background p-5">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <div className="flex items-center gap-2 font-display text-lg">
+                  #{o.id}
+                  <Badge variant={o.status === "pending" ? "destructive" : "secondary"}>{orderStatusLabels[o.status]}</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  {new Date(o.createdAt).toLocaleString("pt-PT")} · {o.customer.name} · {o.customer.email} · {o.customer.phone}
+                </p>
+                <p className="text-sm text-muted-foreground">{o.customer.address}, {o.customer.city}, {o.customer.province}, {o.customer.country}</p>
+                <p className="text-sm text-muted-foreground">{o.shippingMethod}{o.proofRef ? ` · Comprovativo: ${o.proofRef}` : ""}</p>
+              </div>
+              <p className="font-display text-xl text-gold">{formatPrice(o.total)}</p>
+            </div>
+
+            <ul className="space-y-1 border-t border-border pt-3 text-sm text-muted-foreground">
+              {o.items.map((i) => (
+                <li key={i.id + i.size + i.color}>{i.quantity}× {i.name} ({i.size}) — {formatPrice(i.price * i.quantity)}</li>
+              ))}
+            </ul>
+
+            <div className="flex flex-wrap items-center gap-2 border-t border-border pt-3">
+              <Select value={o.status} onValueChange={(v) => { setStatus(o.id, v as OrderStatus); toast.success("Estado atualizado"); }}>
+                <SelectTrigger className="w-56"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  {(Object.keys(orderStatusLabels) as OrderStatus[]).map((s) => (
+                    <SelectItem key={s} value={s}>{orderStatusLabels[s]}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {o.status === "pending" && (
+                <Button size="sm" onClick={() => { setStatus(o.id, "paid"); toast.success("Pagamento validado"); }}>Validar pagamento</Button>
+              )}
+              <Input
+                className="max-w-xs"
+                placeholder="Nota interna…"
+                defaultValue={o.note ?? ""}
+                onBlur={(e) => setNote(o.id, e.target.value)}
+              />
+              <Button variant="ghost" size="icon" onClick={() => { if (confirm(`Eliminar pedido #${o.id}?`)) { removeOrder(o.id); toast.success("Pedido eliminado"); } }}>
+                <Trash2 className="h-4 w-4 text-destructive" />
+              </Button>
+            </div>
+          </div>
+        ))}
+        {list.length === 0 && (
+          <p className="rounded-sm border border-dashed border-border p-10 text-center text-muted-foreground">Sem pedidos para mostrar.</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function emptyProduct(): Product {
   return {
-    id: `UW-${Date.now()}`,
+    id: `WF-${Date.now()}`,
     slug: `novo-produto-${Date.now()}`,
     name: "Novo Produto",
     category: "feminino",
@@ -366,7 +451,7 @@ function PaymentsTab() {
 /* ---------------- SETTINGS ---------------- */
 
 function SettingsTab() {
-  const { settings, updateSettings, resetAll } = useAdmin();
+  const { settings, updateSettings, resetAll, bankAccounts, upsertBankAccount, deleteBankAccount } = useAdmin();
   const [draft, setDraft] = useState(settings);
 
   return (
@@ -390,6 +475,34 @@ function SettingsTab() {
         <div className="grid gap-4 md:grid-cols-2">
           <Field label="Envio grátis acima de (AOA)"><Input type="number" value={draft.freeShippingThreshold} onChange={(e) => setDraft({ ...draft, freeShippingThreshold: Number(e.target.value) })} /></Field>
           <Field label="Taxa fixa de envio (AOA)"><Input type="number" value={draft.shippingFlatRate} onChange={(e) => setDraft({ ...draft, shippingFlatRate: Number(e.target.value) })} /></Field>
+        </div>
+      </div>
+
+      <div className="space-y-4 rounded-sm border border-border bg-background p-6">
+        <h2 className="flex items-center gap-2 font-display text-2xl"><Landmark className="h-5 w-5 text-gold" /> Coordenadas bancárias</h2>
+        <p className="text-sm text-muted-foreground">Contas apresentadas ao cliente no checkout para pagamento por transferência.</p>
+        <div className="grid gap-4 md:grid-cols-2">
+          <Field label="Email para comprovativos" className="md:col-span-2"><Input value={draft.proofEmail} onChange={(e) => setDraft({ ...draft, proofEmail: e.target.value })} /></Field>
+          <Field label="Instruções de pagamento" className="md:col-span-2"><Textarea rows={4} value={draft.paymentInstructions} onChange={(e) => setDraft({ ...draft, paymentInstructions: e.target.value })} /></Field>
+        </div>
+        <div className="space-y-4">
+          {bankAccounts.map((b) => (
+            <div key={b.id} className="grid gap-3 rounded-sm border border-border p-4 md:grid-cols-2">
+              <Field label="Banco"><Input value={b.bank} onChange={(e) => upsertBankAccount({ ...b, bank: e.target.value })} /></Field>
+              <Field label="Titular"><Input value={b.holder} onChange={(e) => upsertBankAccount({ ...b, holder: e.target.value })} /></Field>
+              <Field label="Nº de conta"><Input value={b.accountNumber} onChange={(e) => upsertBankAccount({ ...b, accountNumber: e.target.value })} /></Field>
+              <Field label="IBAN"><Input value={b.iban} onChange={(e) => upsertBankAccount({ ...b, iban: e.target.value })} /></Field>
+              <Field label="Moeda"><Input value={b.currency} onChange={(e) => upsertBankAccount({ ...b, currency: e.target.value })} /></Field>
+              <div className="flex items-end">
+                <Button variant="ghost" size="sm" onClick={() => { if (confirm(`Eliminar conta ${b.bank}?`)) { deleteBankAccount(b.id); toast.success("Conta removida"); } }}>
+                  <Trash2 className="h-4 w-4 text-destructive" /> Remover
+                </Button>
+              </div>
+            </div>
+          ))}
+          <Button variant="outline" onClick={() => upsertBankAccount({ id: `bank-${Date.now()}`, bank: "Novo banco", holder: settings.brandName, iban: "", accountNumber: "", currency: settings.currency })}>
+            <Plus className="h-4 w-4" /> Adicionar conta bancária
+          </Button>
         </div>
       </div>
 

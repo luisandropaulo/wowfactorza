@@ -5,10 +5,10 @@ import hero from "@/assets/hero.jpg";
 export const Route = createFileRoute("/sobre")({
   head: () => ({
     meta: [
-      { title: "Sobre nós — Ubuntu Wear" },
-      { name: "description", content: "A história, missão e visão da Ubuntu Wear." },
-      { property: "og:title", content: "Sobre nós — Ubuntu Wear" },
-      { property: "og:description", content: "Conheça a história Ubuntu Wear." },
+      { title: "Sobre nós — Wow Factor" },
+      { name: "description", content: "A história, missão e visão da Wow Factor." },
+      { property: "og:title", content: "Sobre nós — Wow Factor" },
+      { property: "og:description", content: "Conheça a história Wow Factor." },
     ],
     links: [{ rel: "canonical", href: "/sobre" }],
   }),
@@ -20,23 +20,23 @@ const timeline = [
   { y: "2021", t: "Primeira coleção Heritage" },
   { y: "2023", t: "Loja física no centro de Luanda" },
   { y: "2025", t: "Expansão para Lisboa, Maputo e Lagos" },
-  { y: "2026", t: "Coleção Ubuntu Spirit em parceria com artesãos malianos" },
+  { y: "2026", t: "Coleção WF Spirit em parceria com artesãos malianos" },
 ];
 
 function About() {
   return (
     <div>
       <section className="relative h-[60vh] min-h-[420px] -mt-20 overflow-hidden">
-        <img src={hero} alt="Ubuntu Wear" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={hero} alt="Wow Factor" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-black/60" />
         <div className="container-luxe relative z-10 flex h-full items-end pb-16 text-white">
           <motion.h1 initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="font-display text-5xl md:text-7xl max-w-3xl">A nossa história começa em África</motion.h1>
         </div>
       </section>
       <section className="container-luxe grid gap-12 py-20 md:grid-cols-3">
-        <div><h2 className="font-display text-2xl text-gold">Missão</h2><p className="mt-3 text-muted-foreground">Levar a beleza da cultura africana ao mundo, valorizando artesãos locais e materiais sustentáveis.</p></div>
-        <div><h2 className="font-display text-2xl text-gold">Visão</h2><p className="mt-3 text-muted-foreground">Ser a referência global em moda africana contemporânea, unindo tradição e modernidade.</p></div>
-        <div><h2 className="font-display text-2xl text-gold">Valores</h2><p className="mt-3 text-muted-foreground">Ubuntu, autenticidade, qualidade, sustentabilidade e orgulho africano.</p></div>
+        <div><h2 className="font-display text-2xl text-gold">Missão</h2><p className="mt-3 text-muted-foreground">Levar o streetwear jovem angolano ao mundo, com peças de qualidade e produção responsável.</p></div>
+        <div><h2 className="font-display text-2xl text-gold">Visão</h2><p className="mt-3 text-muted-foreground">Ser a marca de referência do streetwear contemporâneo em Angola e além.</p></div>
+        <div><h2 className="font-display text-2xl text-gold">Valores</h2><p className="mt-3 text-muted-foreground">Autenticidade, qualidade, comunidade e liberdade de expressão.</p></div>
       </section>
       <section className="bg-muted/30 py-20">
         <div className="container-luxe">

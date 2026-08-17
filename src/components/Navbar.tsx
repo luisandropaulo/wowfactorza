@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { products } from "@/data/products";
 import { cn } from "@/lib/utils";
+import logoAsset from "@/assets/wow-factor-logo.jpg.asset.json";
 
 const links = [
   { to: "/", label: "Home" },
@@ -52,8 +53,15 @@ export function Navbar() {
     >
       <div className="container-luxe flex h-20 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2">
-          <span className={cn("font-display text-2xl font-bold tracking-tight", transparent && "text-white")}>
-            Ubuntu<span className="text-gold">Wear</span>
+          <img
+            src={logoAsset.url}
+            alt="Wow Factor"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-sm object-cover"
+          />
+          <span className={cn("font-display text-xl font-bold uppercase tracking-[0.2em]", transparent && "text-white")}>
+            Wow<span className="text-gold">Factor</span>
           </span>
         </Link>
 

@@ -9,6 +9,15 @@ export interface PaymentMethod {
   enabled: boolean;
 }
 
+export interface BankAccount {
+  id: string;
+  bank: string;
+  holder: string;
+  iban: string;
+  accountNumber: string;
+  currency: string;
+}
+
 export interface SiteSettings {
   brandName: string;
   tagline: string;
@@ -25,38 +34,45 @@ export interface SiteSettings {
   freeShippingThreshold: number;
   shippingFlatRate: number;
   currency: string;
+  paymentInstructions: string;
+  proofEmail: string;
 }
 
 const defaultSettings: SiteSettings = {
-  brandName: "Ubuntu Wear",
-  tagline: "Moda africana contemporânea",
-  heroTitle: "Vista a sua ancestralidade",
-  heroSubtitle: "Coleção 2026 inspirada na riqueza cultural do continente africano.",
-  heroCta: "Descobrir coleção",
-  aboutShort: "Ubuntu Wear nasce do encontro entre tradição africana e design contemporâneo.",
-  contactEmail: "ola@ubuntuwear.com",
+  brandName: "Wow Factor",
+  tagline: "Streetwear jovem e contemporâneo",
+  heroTitle: "Feito para quem não passa despercebido",
+  heroSubtitle: "Streetwear contemporâneo, drops limitados e peças que falam mais alto que palavras.",
+  heroCta: "Ver o drop",
+  aboutShort: "Wow Factor é uma marca de streetwear jovem e contemporânea, nascida da rua e feita para quem cria a sua própria linguagem.",
+  contactEmail: "ola@wowfactor.com",
   contactPhone: "+244 923 000 000",
   contactAddress: "Luanda, Angola",
   whatsapp: "+244923000000",
-  instagram: "@ubuntuwear",
-  facebook: "ubuntuwear",
+  instagram: "@wowfactor",
+  facebook: "wowfactor",
   freeShippingThreshold: 50000,
   shippingFlatRate: 2500,
   currency: "AOA",
+  paymentInstructions:
+    "Efetue a transferência do valor total para uma das contas indicadas, usando o número do pedido como referência. Envie o comprovativo por email ou WhatsApp. Assim que o gestor de vendas validar o pagamento, o seu pedido é preparado e enviado.",
+  proofEmail: "pagamentos@wowfactor.com",
 };
 
+const defaultBankAccounts: BankAccount[] = [
+  { id: "bai", bank: "Banco BAI", holder: "Wow Factor, Lda.", iban: "AO06 0040 0000 1234 5678 9012 3", accountNumber: "123456789 10 001", currency: "AOA" },
+  { id: "bfa", bank: "Banco BFA", holder: "Wow Factor, Lda.", iban: "AO06 0006 0000 9876 5432 1098 7", accountNumber: "987654321 10 001", currency: "AOA" },
+];
+
 const defaultPayments: PaymentMethod[] = [
-  { id: "multicaixa", name: "Multicaixa Express", description: "Pagamento instantâneo via Multicaixa Express", enabled: true },
-  { id: "transferencia", name: "Transferência Bancária", description: "BAI / BFA / BIC — comprovativo por email", enabled: true },
-  { id: "cod", name: "Pagamento na Entrega", description: "Dinheiro à entrega (apenas Luanda)", enabled: true },
-  { id: "cartao", name: "Cartão Visa/Mastercard", description: "Pagamento seguro com cartão internacional", enabled: false },
-  { id: "paypal", name: "PayPal", description: "Pagamento via conta PayPal", enabled: false },
+  { id: "transferencia", name: "Transferência Bancária", description: "Pagamento por transferência para as contas da marca, validado manualmente pelo gestor de vendas.", enabled: true },
 ];
 
 interface AdminState {
   products: Product[];
   settings: SiteSettings;
   payments: PaymentMethod[];
+  bankAccounts: BankAccount[];
   // products CRUD
   upsertProduct: (p: Product) => void;
   deleteProduct: (id: string) => void;
@@ -66,6 +82,8 @@ interface AdminState {
   togglePayment: (id: string) => void;
   upsertPayment: (m: PaymentMethod) => void;
   deletePayment: (id: string) => void;
+  upsertBankAccount: (b: BankAccount) => void;
+  deleteBankAccount: (id: string) => void;
   resetAll: () => void;
 }
 
@@ -75,6 +93,7 @@ export const useAdmin = create<AdminState>()(
       products: seedCatalog,
       settings: defaultSettings,
       payments: defaultPayments,
+      bankAccounts: defaultBankAccounts,
       upsertProduct: (p) =>
         set((s) => {
           const idx = s.products.findIndex((x) => x.id === p.id);
@@ -96,11 +115,21 @@ export const useAdmin = create<AdminState>()(
           return { payments: next };
         }),
       deletePayment: (id) => set((s) => ({ payments: s.payments.filter((p) => p.id !== id) })),
-      resetAll: () => set({ products: seedCatalog, settings: defaultSettings, payments: defaultPayments }),
+      upsertBankAccount: (b) =>
+        set((s) => {
+          const idx = s.bankAccounts.findIndex((x) => x.id === b.id);
+          if (idx === -1) return { bankAccounts: [...s.bankAccounts, b] };
+          const next = [...s.bankAccounts];
+          next[idx] = b;
+          return { bankAccounts: next };
+        }),
+      deleteBankAccount: (id) => set((s) => ({ bankAccounts: s.bankAccounts.filter((b) => b.id !== id) })),
+      resetAll: () =>
+        set({ products: seedCatalog, settings: defaultSettings, payments: defaultPayments, bankAccounts: defaultBankAccounts }),
     }),
     {
-      name: "ubuntu-admin",
-      version: 2,
+      name: "wf-admin",
+      version: 3,
     },
   ),
 );
@@ -109,6 +138,7 @@ export const useAdmin = create<AdminState>()(
 export const useCatalog = () => useAdmin((s) => s.products);
 export const useSettings = () => useAdmin((s) => s.settings);
 export const useEnabledPayments = () => useAdmin((s) => s.payments.filter((p) => p.enabled));
+export const useBankAccounts = () => useAdmin((s) => s.bankAccounts);
 
 // Non-hook accessors (for loaders)
 export function getCatalog(): Product[] {

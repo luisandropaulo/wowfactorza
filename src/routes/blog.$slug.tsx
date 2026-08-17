@@ -9,7 +9,7 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: loaderData ? [
-      { title: `${loaderData.post.title} — Ubuntu Wear` },
+      { title: `${loaderData.post.title} — Wow Factor` },
       { name: "description", content: loaderData.post.excerpt },
       { property: "og:title", content: loaderData.post.title },
       { property: "og:description", content: loaderData.post.excerpt },
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/blog/$slug")({
         <p className="mt-6 text-lg text-muted-foreground">{post.excerpt}</p>
         <div className="prose mt-10 space-y-4 text-foreground">
           <p>O continente africano sempre foi um celeiro inesgotável de criatividade. Dos tecidos Ankara da Nigéria aos panos Kente do Gana, passando pelo Bogolan do Mali e pelo Shweshwe da África do Sul, cada padrão carrega séculos de história, identidade e orgulho.</p>
-          <p>Na Ubuntu Wear, traduzimos essa riqueza cultural em peças contemporâneas, pensadas para o guarda-roupa moderno sem perder a alma das suas origens. Cada coleção é desenvolvida em parceria com artesãos locais, garantindo cadeias de produção justas e materiais sustentáveis.</p>
+          <p>Na Wow Factor, traduzimos essa riqueza cultural em peças contemporâneas, pensadas para o guarda-roupa moderno sem perder a alma das suas origens. Cada coleção é desenvolvida em parceria com artesãos locais, garantindo cadeias de produção justas e materiais sustentáveis.</p>
           <p>O resultado é uma moda que celebra a diversidade, o talento e o futuro africano — para vestir todos os dias, com orgulho.</p>
         </div>
       </article>

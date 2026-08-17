@@ -16,10 +16,10 @@ import catAcc from "@/assets/cat-accessories.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ubuntu Wear — Vista a Cultura. Expresse a Identidade." },
-      { name: "description", content: "Moda africana contemporânea, premium e autêntica. Coleções exclusivas em Ankara, Kente, Bogolan e mais." },
-      { property: "og:title", content: "Ubuntu Wear — Moda Africana Premium" },
-      { property: "og:description", content: "Coleções exclusivas inspiradas na cultura africana contemporânea." },
+      { title: "Wow Factor — Streetwear Jovem e Contemporâneo" },
+      { name: "description", content: "Streetwear jovem e contemporâneo: hoodies, tees, conjuntos e acessórios em drops limitados. Entrega em toda Angola." },
+      { property: "og:title", content: "Wow Factor — Streetwear Jovem e Contemporâneo" },
+      { property: "og:description", content: "Drops limitados de streetwear urbano com atitude." },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
@@ -35,7 +35,7 @@ const categories = [
 
 const benefits = [
   { icon: Truck, title: "Entrega Nacional", desc: "Em toda Angola, rápido e seguro." },
-  { icon: Shield, title: "Pagamento Seguro", desc: "Multicaixa, transferência e cartão." },
+  { icon: Shield, title: "Transferência Bancária", desc: "Pague por transferência e envie o comprovativo." },
   { icon: RefreshCw, title: "Troca Garantida", desc: "30 dias para trocas e devoluções." },
   { icon: Headphones, title: "Suporte 24/7", desc: "Estamos sempre disponíveis." },
 ];
@@ -56,14 +56,14 @@ function Index() {
     <div className="-mt-20">
       {/* HERO */}
       <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
-        <img src={hero} alt="Modelos vestindo coleção Ubuntu Wear" width={1920} height={1080} className="absolute inset-0 h-full w-full object-cover" />
+        <img src={hero} alt="Modelos vestindo o novo drop de streetwear Wow Factor" width={1920} height={1080} className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
         <div className="container-luxe relative z-10 flex h-full flex-col justify-end pb-24 text-white">
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
             className="mb-4 text-xs uppercase tracking-[0.4em] text-gold"
           >
-            Coleção Heritage 2026
+            Drop 2026
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.8 }}
@@ -194,11 +194,11 @@ function Index() {
       <section className="container-luxe py-24">
         <div className="rounded-sm bg-gradient-gold p-12 text-center text-secondary shadow-gold md:p-16">
           <h2 className="font-display text-3xl md:text-5xl">Receba novidades e promoções exclusivas</h2>
-          <p className="mx-auto mt-3 max-w-xl">Junte-se à família Ubuntu e seja o primeiro a conhecer as novas coleções.</p>
+          <p className="mx-auto mt-3 max-w-xl">Junte-se à família Wow Factor e seja o primeiro a conhecer as novas coleções.</p>
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              toast.success("Bem-vindo à família Ubuntu!");
+              toast.success("Bem-vindo à família Wow Factor!");
               (e.currentTarget as HTMLFormElement).reset();
             }}
             className="mx-auto mt-8 flex max-w-md gap-2"
