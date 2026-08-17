@@ -6,16 +6,16 @@ export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
       { title: "Blog — Wow Factor" },
-      { name: "description", content: "Cultura, tendências e moda africana no blog Wow Factor." },
+      { name: "description", content: "Cultura urbana, drops e tendências streetwear no blog Wow Factor." },
       { property: "og:title", content: "Blog — Wow Factor" },
-      { property: "og:description", content: "Histórias e tendências da moda africana." },
+      { property: "og:description", content: "Histórias e tendências do streetwear contemporâneo." },
     ],
     links: [{ rel: "canonical", href: "/blog" }],
   }),
   component: () => (
     <div className="container-luxe py-12">
       <h1 className="font-display text-5xl text-center">Blog Wow Factor</h1>
-      <p className="mt-3 text-center text-muted-foreground">Moda Africana · Cultura · Tendências · Eventos</p>
+      <p className="mt-3 text-center text-muted-foreground">Streetwear · Cultura Urbana · Tendências · Drops</p>
       <div className="mt-12 grid gap-8 md:grid-cols-2">
         {blogPosts.map((p, i) => (
           <motion.article key={p.slug} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>

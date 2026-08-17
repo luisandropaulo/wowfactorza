@@ -34,9 +34,9 @@ function About() {
         </div>
       </section>
       <section className="container-luxe grid gap-12 py-20 md:grid-cols-3">
-        <div><h2 className="font-display text-2xl text-gold">Missão</h2><p className="mt-3 text-muted-foreground">Levar a beleza da cultura africana ao mundo, valorizando artesãos locais e materiais sustentáveis.</p></div>
-        <div><h2 className="font-display text-2xl text-gold">Visão</h2><p className="mt-3 text-muted-foreground">Ser a referência global em moda africana contemporânea, unindo tradição e modernidade.</p></div>
-        <div><h2 className="font-display text-2xl text-gold">Valores</h2><p className="mt-3 text-muted-foreground">Autenticidade, qualidade, sustentabilidade e orgulho africano.</p></div>
+        <div><h2 className="font-display text-2xl text-gold">Missão</h2><p className="mt-3 text-muted-foreground">Levar o streetwear jovem angolano ao mundo, com peças de qualidade e produção responsável.</p></div>
+        <div><h2 className="font-display text-2xl text-gold">Visão</h2><p className="mt-3 text-muted-foreground">Ser a marca de referência do streetwear contemporâneo em Angola e além.</p></div>
+        <div><h2 className="font-display text-2xl text-gold">Valores</h2><p className="mt-3 text-muted-foreground">Autenticidade, qualidade, comunidade e liberdade de expressão.</p></div>
       </section>
       <section className="bg-muted/30 py-20">
         <div className="container-luxe">

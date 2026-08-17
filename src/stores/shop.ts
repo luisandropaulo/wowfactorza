@@ -54,7 +54,7 @@ export const useCart = create<CartState>()(
         })),
       clear: () => set({ items: [], coupon: undefined }),
       applyCoupon: (code) => {
-        const valid = ["UBUNTU10", "AFRICA20"].includes(code.toUpperCase());
+        const valid = ["WOW10", "STREET20"].includes(code.toUpperCase());
         if (valid) set({ coupon: code.toUpperCase() });
         return valid;
       },
@@ -63,7 +63,7 @@ export const useCart = create<CartState>()(
         const c = get().coupon;
         if (!c) return 0;
         const sub = get().subtotal();
-        return c === "AFRICA20" ? sub * 0.2 : sub * 0.1;
+        return c === "STREET20" ? sub * 0.2 : sub * 0.1;
       },
       shipping: () => (get().subtotal() > 50000 ? 0 : 2500),
       total: () => Math.max(0, get().subtotal() - get().discount() + get().shipping()),

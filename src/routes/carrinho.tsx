@@ -61,7 +61,7 @@ function CartPage() {
         <aside className="h-fit space-y-4 border border-border bg-card p-6">
           <h2 className="font-display text-2xl">Resumo</h2>
           <div className="flex gap-2">
-            <Input placeholder="Cupom (UBUNTU10 / AFRICA20)" value={code} onChange={(e) => setCode(e.target.value)} />
+            <Input placeholder="Cupom (WOW10 / STREET20)" value={code} onChange={(e) => setCode(e.target.value)} />
             <Button variant="outline" onClick={() => {
               if (applyCoupon(code)) toast.success("Cupom aplicado!"); else toast.error("Cupom inválido.");
             }}>Aplicar</Button>

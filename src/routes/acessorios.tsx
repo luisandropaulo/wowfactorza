@@ -6,7 +6,7 @@ export const Route = createFileRoute("/acessorios")({
   head: () => ({
     meta: [
       { title: "Acessórios — Wow Factor" },
-      { name: "description", content: "Acessórios africanos: turbantes, bolsas, joias e sapatos artesanais." },
+      { name: "description", content: "Acessórios streetwear: bonés, bolsas, sneakers e joalharia urbana." },
       { property: "og:title", content: "Acessórios — Wow Factor" },
       { property: "og:description", content: "Acessórios artesanais Wow Factor." },
     ],

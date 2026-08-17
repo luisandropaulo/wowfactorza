@@ -6,7 +6,7 @@ export const Route = createFileRoute("/masculino")({
   head: () => ({
     meta: [
       { title: "Masculino — Wow Factor" },
-      { name: "description", content: "Moda africana masculina premium: dashikis, blazers Kente e alfaiataria contemporânea." },
+      { name: "description", content: "Streetwear masculino: hoodies, tees oversized, calças cargo e casacos urbanos." },
       { property: "og:title", content: "Masculino — Wow Factor" },
       { property: "og:description", content: "Coleção masculina Wow Factor." },
     ],

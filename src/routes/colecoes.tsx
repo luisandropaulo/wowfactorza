@@ -6,9 +6,9 @@ export const Route = createFileRoute("/colecoes")({
   head: () => ({
     meta: [
       { title: "Coleções — Wow Factor" },
-      { name: "description", content: "Todas as coleções Wow Factor: Heritage, Sahara, Kente Royale, Afro Moderno e WF Spirit." },
+      { name: "description", content: "Todos os drops Wow Factor: streetwear jovem, contemporâneo e em edição limitada." },
       { property: "og:title", content: "Coleções — Wow Factor" },
-      { property: "og:description", content: "Descubra as coleções exclusivas Wow Factor." },
+      { property: "og:description", content: "Descubra os drops exclusivos de streetwear Wow Factor." },
     ],
     links: [{ rel: "canonical", href: "/colecoes" }],
   }),
