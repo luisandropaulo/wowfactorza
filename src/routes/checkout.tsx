@@ -190,16 +190,18 @@ function Checkout() {
         </form>
         <aside className="h-fit space-y-3 border border-border bg-card p-6 text-sm">
           <h2 className="font-display text-xl">Resumo</h2>
-          {items.map((i) => (
+          {(placed ? placed.items : items).map((i) => (
             <div key={i.id + i.size + i.color} className="flex justify-between text-xs">
               <span>{i.name} × {i.quantity}</span><span>{formatPrice(i.price * i.quantity)}</span>
             </div>
           ))}
           <div className="border-t border-border pt-3 space-y-1">
-            <div className="flex justify-between"><span>Subtotal</span><span>{formatPrice(subtotal())}</span></div>
-            <div className="flex justify-between"><span>Envio</span><span>{formatPrice(shipping())}</span></div>
-            {discount() > 0 && <div className="flex justify-between text-gold"><span>Desconto</span><span>-{formatPrice(discount())}</span></div>}
-            <div className="flex justify-between border-t border-border pt-2 text-lg font-semibold"><span>Total</span><span>{formatPrice(total() || 0)}</span></div>
+            <div className="flex justify-between"><span>Subtotal</span><span>{formatPrice(placed ? placed.subtotal : subtotal())}</span></div>
+            <div className="flex justify-between"><span>Envio</span><span>{formatPrice(placed ? placed.shipping : shipping())}</span></div>
+            {(placed ? placed.discount : discount()) > 0 && (
+              <div className="flex justify-between text-gold"><span>Desconto</span><span>-{formatPrice(placed ? placed.discount : discount())}</span></div>
+            )}
+            <div className="flex justify-between border-t border-border pt-2 text-lg font-semibold"><span>Total</span><span>{formatPrice(placed ? placed.total : total() || 0)}</span></div>
           </div>
         </aside>
       </div>
