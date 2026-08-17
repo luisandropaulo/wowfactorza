@@ -82,6 +82,8 @@ interface AdminState {
   togglePayment: (id: string) => void;
   upsertPayment: (m: PaymentMethod) => void;
   deletePayment: (id: string) => void;
+  upsertBankAccount: (b: BankAccount) => void;
+  deleteBankAccount: (id: string) => void;
   resetAll: () => void;
 }
 
@@ -91,6 +93,7 @@ export const useAdmin = create<AdminState>()(
       products: seedCatalog,
       settings: defaultSettings,
       payments: defaultPayments,
+      bankAccounts: defaultBankAccounts,
       upsertProduct: (p) =>
         set((s) => {
           const idx = s.products.findIndex((x) => x.id === p.id);
@@ -112,11 +115,21 @@ export const useAdmin = create<AdminState>()(
           return { payments: next };
         }),
       deletePayment: (id) => set((s) => ({ payments: s.payments.filter((p) => p.id !== id) })),
-      resetAll: () => set({ products: seedCatalog, settings: defaultSettings, payments: defaultPayments }),
+      upsertBankAccount: (b) =>
+        set((s) => {
+          const idx = s.bankAccounts.findIndex((x) => x.id === b.id);
+          if (idx === -1) return { bankAccounts: [...s.bankAccounts, b] };
+          const next = [...s.bankAccounts];
+          next[idx] = b;
+          return { bankAccounts: next };
+        }),
+      deleteBankAccount: (id) => set((s) => ({ bankAccounts: s.bankAccounts.filter((b) => b.id !== id) })),
+      resetAll: () =>
+        set({ products: seedCatalog, settings: defaultSettings, payments: defaultPayments, bankAccounts: defaultBankAccounts }),
     }),
     {
       name: "wf-admin",
-      version: 2,
+      version: 3,
     },
   ),
 );
@@ -125,6 +138,7 @@ export const useAdmin = create<AdminState>()(
 export const useCatalog = () => useAdmin((s) => s.products);
 export const useSettings = () => useAdmin((s) => s.settings);
 export const useEnabledPayments = () => useAdmin((s) => s.payments.filter((p) => p.enabled));
+export const useBankAccounts = () => useAdmin((s) => s.bankAccounts);
 
 // Non-hook accessors (for loaders)
 export function getCatalog(): Product[] {
