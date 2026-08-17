@@ -49,7 +49,7 @@ export function Footer() {
               const fd = new FormData(e.currentTarget);
               const email = String(fd.get("email") || "");
               if (email) {
-                toast.success("Subscrição confirmada!", { description: "Obrigado por se juntar à família Ubuntu." });
+                toast.success("Subscrição confirmada!", { description: "Obrigado por se juntar à família Wow Factor." });
                 (e.currentTarget as HTMLFormElement).reset();
               }
             }}

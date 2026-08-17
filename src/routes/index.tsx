@@ -194,11 +194,11 @@ function Index() {
       <section className="container-luxe py-24">
         <div className="rounded-sm bg-gradient-gold p-12 text-center text-secondary shadow-gold md:p-16">
           <h2 className="font-display text-3xl md:text-5xl">Receba novidades e promoções exclusivas</h2>
-          <p className="mx-auto mt-3 max-w-xl">Junte-se à família Ubuntu e seja o primeiro a conhecer as novas coleções.</p>
+          <p className="mx-auto mt-3 max-w-xl">Junte-se à família Wow Factor e seja o primeiro a conhecer as novas coleções.</p>
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              toast.success("Bem-vindo à família Ubuntu!");
+              toast.success("Bem-vindo à família Wow Factor!");
               (e.currentTarget as HTMLFormElement).reset();
             }}
             className="mx-auto mt-8 flex max-w-md gap-2"

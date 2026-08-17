@@ -6,7 +6,7 @@ export const Route = createFileRoute("/colecoes")({
   head: () => ({
     meta: [
       { title: "Coleções — Wow Factor" },
-      { name: "description", content: "Todas as coleções Wow Factor: Heritage, Sahara, Kente Royale, Afro Moderno e Ubuntu Spirit." },
+      { name: "description", content: "Todas as coleções Wow Factor: Heritage, Sahara, Kente Royale, Afro Moderno e WF Spirit." },
       { property: "og:title", content: "Coleções — Wow Factor" },
       { property: "og:description", content: "Descubra as coleções exclusivas Wow Factor." },
     ],

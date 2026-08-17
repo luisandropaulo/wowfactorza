@@ -14,7 +14,7 @@ export const Route = createFileRoute("/blog")({
   }),
   component: () => (
     <div className="container-luxe py-12">
-      <h1 className="font-display text-5xl text-center">Blog Ubuntu</h1>
+      <h1 className="font-display text-5xl text-center">Blog Wow Factor</h1>
       <p className="mt-3 text-center text-muted-foreground">Moda Africana · Cultura · Tendências · Eventos</p>
       <div className="mt-12 grid gap-8 md:grid-cols-2">
         {blogPosts.map((p, i) => (

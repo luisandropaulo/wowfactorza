@@ -20,7 +20,7 @@ const timeline = [
   { y: "2021", t: "Primeira coleção Heritage" },
   { y: "2023", t: "Loja física no centro de Luanda" },
   { y: "2025", t: "Expansão para Lisboa, Maputo e Lagos" },
-  { y: "2026", t: "Coleção Ubuntu Spirit em parceria com artesãos malianos" },
+  { y: "2026", t: "Coleção WF Spirit em parceria com artesãos malianos" },
 ];
 
 function About() {
@@ -36,7 +36,7 @@ function About() {
       <section className="container-luxe grid gap-12 py-20 md:grid-cols-3">
         <div><h2 className="font-display text-2xl text-gold">Missão</h2><p className="mt-3 text-muted-foreground">Levar a beleza da cultura africana ao mundo, valorizando artesãos locais e materiais sustentáveis.</p></div>
         <div><h2 className="font-display text-2xl text-gold">Visão</h2><p className="mt-3 text-muted-foreground">Ser a referência global em moda africana contemporânea, unindo tradição e modernidade.</p></div>
-        <div><h2 className="font-display text-2xl text-gold">Valores</h2><p className="mt-3 text-muted-foreground">Ubuntu, autenticidade, qualidade, sustentabilidade e orgulho africano.</p></div>
+        <div><h2 className="font-display text-2xl text-gold">Valores</h2><p className="mt-3 text-muted-foreground">Autenticidade, qualidade, sustentabilidade e orgulho africano.</p></div>
       </section>
       <section className="bg-muted/30 py-20">
         <div className="container-luxe">
