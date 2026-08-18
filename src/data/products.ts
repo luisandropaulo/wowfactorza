@@ -4,14 +4,14 @@ import p3 from "@/assets/p3.jpg";
 import p4 from "@/assets/p4.jpg";
 import p5 from "@/assets/p5.jpg";
 import p6 from "@/assets/p6.jpg";
-import kimono1 from "@/assets/feminino/1_kimono.jpg.asset.json";
-import kimono2 from "@/assets/feminino/2_kimono.jpg.asset.json";
-import pindale1 from "@/assets/feminino/1_pindale-top-skirt.jpg.asset.json";
-import pindale4 from "@/assets/feminino/4_pindale-top-skirt.jpg.asset.json";
-import green2 from "@/assets/feminino/2_green-skirt.jpg.asset.json";
-import green4 from "@/assets/feminino/4_green-skirt.jpg.asset.json";
-import busin1 from "@/assets/feminino/1_busin-suit.jpg.asset.json";
-import busin2 from "@/assets/feminino/2_busin-suit.jpg.asset.json";
+import teeWhiteFront from "@/assets/drops/tee-white-front.jpg.asset.json";
+import teeWhiteBack from "@/assets/drops/tee-white-back.jpg.asset.json";
+import teeClayFront from "@/assets/drops/tee-clay-front.jpg.asset.json";
+import teeClayBack from "@/assets/drops/tee-clay-back.jpg.asset.json";
+import thornTracksuit from "@/assets/drops/thorn-tracksuit.jpg.asset.json";
+import washedZipSet from "@/assets/drops/washed-zip-set.jpg.asset.json";
+import desireTee from "@/assets/drops/desire-tee.jpg.asset.json";
+import dontTripTee from "@/assets/drops/dont-trip-tee.jpg.asset.json";
 
 export type Category = "masculino" | "feminino" | "infantil" | "acessorios";
 
@@ -39,39 +39,39 @@ export interface Product {
 const images = [p1, p2, p3, p4, p5, p6];
 const baseColors = ["#D4AF37", "#111827", "#8B4513", "#F5F5DC", "#B22222", "#1F4E3D"];
 const baseSizes = ["XS", "S", "M", "L", "XL", "XXL"];
-const collections = ["Heritage", "Sahara", "Kente Royale", "Afro Moderno", "WF Spirit"];
+const collections = ["Thorn", "Desire", "Washed 2003", "WF Signature", "Street Essentials"];
 
 const seeds: Array<{ name: string; category: Category; price: number; img: number; desc: string }> = [
-  { name: "Camisa Dashiki Imperial", category: "masculino", price: 14900, img: 0, desc: "Camisa Dashiki em algodão premium com bordados dourados feitos à mão." },
-  { name: "Blazer Kente Royale", category: "masculino", price: 38900, img: 2, desc: "Blazer estruturado em tecido Kente, alfaiataria contemporânea." },
-  { name: "Turbante Yara Ouro", category: "acessorios", price: 6500, img: 3, desc: "Turbante artesanal com estampa geométrica e fio dourado." },
-  { name: "Sandália Tribal Zuri", category: "acessorios", price: 8900, img: 4, desc: "Sandália em couro natural com missangas africanas." },
-  { name: "Camisa Adire Ocean", category: "masculino", price: 17500, img: 0, desc: "Camisa em tecido Adire tingido à mão." },
-  { name: "Conjunto Kente Júnior", category: "infantil", price: 11900, img: 2, desc: "Conjunto infantil em mini-Kente, conforto e estilo." },
-  { name: "Bolsa Couro Mali", category: "acessorios", price: 15900, img: 3, desc: "Bolsa em couro vegetal com costura artesanal." },
-  { name: "Túnica Senegal Nights", category: "masculino", price: 16900, img: 0, desc: "Túnica longa com bordados pretos e dourados." },
-  { name: "Brincos Ouro Tuareg", category: "acessorios", price: 4900, img: 3, desc: "Brincos circulares em latão dourado." },
-  { name: "Camisa Print Savanna", category: "masculino", price: 13900, img: 0, desc: "Camisa manga curta com estampa savana." },
-  { name: "Lenço Quadrado Nairobi", category: "acessorios", price: 3900, img: 3, desc: "Lenço de seda com print exclusivo." },
-  { name: "Camisa Mini Ankara", category: "infantil", price: 7900, img: 0, desc: "Camisa infantil com estampa Ankara reduzida." },
-  { name: "Sapatênis Mandela", category: "acessorios", price: 19900, img: 4, desc: "Sapatênis em couro com detalhes em tecido africano." },
-  { name: "Camisa Polo Tribal", category: "masculino", price: 11900, img: 0, desc: "Polo em piquet com detalhes tribais." },
-  { name: "Vestido Infantil Festa", category: "infantil", price: 13500, img: 1, desc: "Vestido de festa infantil em wax cintilante." },
-  { name: "Bracelete Ouro Maasai", category: "acessorios", price: 5900, img: 3, desc: "Bracelete inspirado nas joias Maasai." },
-  { name: "Camisa Linho Calabar", category: "masculino", price: 15900, img: 0, desc: "Camisa de linho com gola padre." },
-  { name: "Conjunto Bebé WF", category: "infantil", price: 9900, img: 2, desc: "Conjunto para bebés em algodão orgânico." },
-  { name: "Colar Múltiplo Ouro", category: "acessorios", price: 7500, img: 3, desc: "Colar de camadas em banho de ouro." },
-  { name: "Bermuda Print Lagos", category: "masculino", price: 9900, img: 0, desc: "Bermuda com estampa contemporânea." },
-  { name: "Tênis Couro Premium", category: "acessorios", price: 24900, img: 4, desc: "Tênis em couro com detalhes em wax." },
-  { name: "Camisa Smoking Royale", category: "masculino", price: 32900, img: 2, desc: "Camisa social com peitilho bordado." },
-  { name: "Calça Alfaiataria Bronze", category: "masculino", price: 22900, img: 2, desc: "Calça de alfaiataria em tom bronze." },
-  { name: "Camisa Infantil Heritage", category: "infantil", price: 8500, img: 0, desc: "Camisa para crianças em wax suave." },
-  { name: "Cinto Couro Trançado", category: "acessorios", price: 4500, img: 3, desc: "Cinto em couro trançado à mão." },
-  { name: "Camisa Estampa Geo", category: "masculino", price: 14500, img: 0, desc: "Camisa com padrão geométrico." },
-  { name: "Conjunto Coordenado Royal", category: "masculino", price: 44900, img: 2, desc: "Conjunto coordenado camisa e calça." },
-  { name: "Mochila Couro Étnica", category: "acessorios", price: 18900, img: 3, desc: "Mochila em couro com detalhe tribal." },
-  { name: "Camisa Linho Branca", category: "masculino", price: 13900, img: 0, desc: "Camisa branca em linho premium." },
-  { name: "Boné Ankara Street", category: "acessorios", price: 3500, img: 3, desc: "Boné em wax com viseira curva." },
+  { name: "Hoodie Oversized WF Core", category: "masculino", price: 24900, img: 0, desc: "Hoodie oversized em moletão pesado 400g com logo WF bordado no peito." },
+  { name: "Calça Cargo Street Black", category: "masculino", price: 21900, img: 2, desc: "Calça cargo wide leg com bolsos utilitários e cós ajustável." },
+  { name: "Boné WF Trucker", category: "acessorios", price: 6500, img: 3, desc: "Boné trucker com logo WF bordado e ajuste snapback." },
+  { name: "Ténis Street Runner", category: "acessorios", price: 28900, img: 4, desc: "Ténis chunky com sola alta e detalhes refletores." },
+  { name: "Camisola Manga Longa Fade", category: "masculino", price: 17500, img: 0, desc: "Manga longa em algodão com lavagem fade e print nas costas." },
+  { name: "Conjunto Kids WF Mini", category: "infantil", price: 15900, img: 2, desc: "Conjunto infantil hoodie + jogger em moletão macio." },
+  { name: "Sling Bag Utility", category: "acessorios", price: 12900, img: 3, desc: "Bolsa transversal em nylon técnico com fivela rápida." },
+  { name: "Hoodie Zip Washed Grey", category: "masculino", price: 27900, img: 0, desc: "Hoodie com fecho integral em lavagem cinza vintage." },
+  { name: "Meias WF Pack 3", category: "acessorios", price: 4900, img: 3, desc: "Pack de 3 meias cano alto com logo tecido." },
+  { name: "Tee Boxy Fit Preta", category: "masculino", price: 12900, img: 0, desc: "T-shirt boxy fit em jersey pesado, corte reto." },
+  { name: "Gorro Beanie WF", category: "acessorios", price: 5900, img: 3, desc: "Beanie canelado com etiqueta bordada." },
+  { name: "Tee Kids Street Print", category: "infantil", price: 8900, img: 0, desc: "T-shirt infantil com print gráfico frontal." },
+  { name: "Ténis Low Canvas", category: "acessorios", price: 19900, img: 4, desc: "Ténis low top em lona com sola vulcanizada." },
+  { name: "Polo Tech Street", category: "masculino", price: 15900, img: 0, desc: "Polo em piquet técnico com gola contrastante." },
+  { name: "Vestido Kids Jersey", category: "infantil", price: 13500, img: 1, desc: "Vestido infantil em jersey com print WF." },
+  { name: "Pulseira Cordão WF", category: "acessorios", price: 3900, img: 3, desc: "Pulseira em cordão trançado com terminal metálico." },
+  { name: "Camisa Overshirt Sand", category: "masculino", price: 22900, img: 0, desc: "Overshirt em sarja com bolsos frontais." },
+  { name: "Conjunto Baby WF", category: "infantil", price: 10900, img: 2, desc: "Conjunto para bebé em algodão orgânico." },
+  { name: "Corrente Chain Silver", category: "acessorios", price: 8500, img: 3, desc: "Corrente em aço inoxidável com pendente WF." },
+  { name: "Short Moletão Street", category: "masculino", price: 13900, img: 0, desc: "Short em moletão com cordão e bolsos laterais." },
+  { name: "Ténis High Top Mono", category: "acessorios", price: 31900, img: 4, desc: "Ténis cano alto monocromático em couro sintético." },
+  { name: "Puffer Jacket Night", category: "masculino", price: 46900, img: 2, desc: "Casaco puffer acolchoado com capuz e forro térmico." },
+  { name: "Jogger Slim Charcoal", category: "masculino", price: 18900, img: 2, desc: "Jogger slim com punhos elásticos." },
+  { name: "Hoodie Kids Street", category: "infantil", price: 12500, img: 0, desc: "Hoodie infantil com bolso canguru." },
+  { name: "Cinto Web Buckle", category: "acessorios", price: 5500, img: 3, desc: "Cinto em web com fivela metálica." },
+  { name: "Tee Graphic Geo", category: "masculino", price: 13500, img: 0, desc: "T-shirt com print geométrico frontal." },
+  { name: "Conjunto Tracksuit Mono", category: "masculino", price: 49900, img: 2, desc: "Conjunto tracksuit hoodie + calça em moletão pesado." },
+  { name: "Mochila Tech Daily", category: "acessorios", price: 21900, img: 3, desc: "Mochila em nylon com compartimento para portátil." },
+  { name: "Tee Essential Branca", category: "masculino", price: 11900, img: 0, desc: "T-shirt essencial branca em algodão penteado." },
+  { name: "Boné Dad Hat Washed", category: "acessorios", price: 6900, img: 3, desc: "Dad hat em algodão lavado com logo bordado." },
 ];
 
 function slugify(s: string) {
@@ -106,85 +106,122 @@ const seedProducts: Product[] = seeds.map((s, i) => {
   };
 });
 
-const femininoProducts: Product[] = [
+export const dropProducts: Product[] = [
   {
-    id: "WF-F-001",
-    slug: "kimono-wf-noir",
-    name: "Kimono WF Noir",
-    category: "feminino",
-    collection: "Heritage",
-    price: 32900,
+    id: "WF-D-001",
+    slug: "tee-wf-thorn-white",
+    name: "Tee WF Thorn White",
+    category: "masculino",
+    collection: "Thorn",
+    price: 15900,
     rating: 4.9,
     reviews: 87,
-    colors: ["#0B0B0B", "#1F2937"],
-    sizes: ["S", "M", "L", "XL"],
-    stock: 12,
-    image: kimono1.url,
-    gallery: [kimono1.url, kimono2.url],
-    description: "Kimono longo em tecido africano com estampa estrelar central. Caimento fluido, mangas amplas e gola padre. Peça versátil para ocasiões especiais ou street style contemporâneo.",
+    colors: ["#FFFFFF", "#111827"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    stock: 24,
+    image: teeWhiteFront.url,
+    gallery: [teeWhiteFront.url, teeWhiteBack.url],
+    description: "T-shirt branca em algodão pesado com o logo WF em textura líquida: pequeno no peito e em grande escala nas costas. Corte regular, gola reforçada.",
     isNew: true,
     isBestseller: true,
-    tags: ["feminino", "kimono", "heritage"],
+    tags: ["tee", "thorn", "unissexo"],
   },
   {
-    id: "WF-F-002",
-    slug: "conjunto-pindale-top-skirt",
-    name: "Pindalé Top & Skirt",
+    id: "WF-D-002",
+    slug: "tee-wf-signature-clay",
+    name: "Tee WF Signature Clay",
     category: "feminino",
-    collection: "Afro Moderno",
-    price: 28500,
+    collection: "WF Signature",
+    price: 15900,
     rating: 4.8,
     reviews: 64,
-    colors: ["#0B0B0B", "#FFFFFF"],
-    sizes: ["XS", "S", "M", "L"],
-    stock: 9,
-    image: pindale1.url,
-    gallery: [pindale1.url, pindale4.url],
-    description: "Conjunto Pindalé composto por top com decote em coração e cristais e saia midi com fenda lateral marcante. Estampa estrelar exclusiva em preto e branco.",
-    isNew: true,
-    tags: ["feminino", "conjunto", "afro-moderno"],
-  },
-  {
-    id: "WF-F-003",
-    slug: "saia-green-leaf-ankara",
-    name: "Green Skirt Leaf Ankara",
-    category: "feminino",
-    collection: "WF Spirit",
-    price: 18900,
-    rating: 4.7,
-    reviews: 52,
-    colors: ["#1F4E3D", "#5BA86B"],
+    colors: ["#A9605C", "#FFFFFF"],
     sizes: ["XS", "S", "M", "L", "XL"],
-    stock: 18,
-    image: green4.url,
-    gallery: [green4.url, green2.url],
-    description: "Saia curta com estampa em folhas geométricas verdes sobre fundo escuro. Cintura alta, fenda discreta e caimento estruturado em wax premium.",
+    stock: 20,
+    image: teeClayFront.url,
+    gallery: [teeClayFront.url, teeClayBack.url],
+    description: "T-shirt em tom clay com o monograma WF a branco: discreto no peito e em grande formato nas costas. Caimento relaxado, ideal para looks oversized.",
     isNew: true,
-    isBestseller: true,
-    tags: ["feminino", "saia", "wf-spirit"],
+    tags: ["tee", "signature", "feminino"],
   },
   {
-    id: "WF-F-004",
-    slug: "busin-suit-terracota",
-    name: "Busin Suit Terracota",
-    category: "feminino",
-    collection: "Kente Royale",
-    price: 56900,
+    id: "WF-D-003",
+    slug: "conjunto-thorn-cross-black",
+    name: "Conjunto Thorn Cross Black",
+    category: "masculino",
+    collection: "Thorn",
+    price: 62900,
     rating: 5.0,
     reviews: 41,
-    colors: ["#C2542A", "#E8722E"],
-    sizes: ["S", "M", "L", "XL"],
-    stock: 7,
-    image: busin1.url,
-    gallery: [busin1.url, busin2.url],
-    description: "Conjunto Busin Suit em tecido brocado terracota com brilho acetinado. Casaco longo com detalhe branco contrastante e calça wide leg. Alfaiataria contemporânea de gala.",
+    colors: ["#0B0B0B", "#FFFFFF"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    stock: 10,
+    image: thornTracksuit.url,
+    gallery: [thornTracksuit.url],
+    description: "Conjunto hoodie oversized + calça baggy em moletão pesado preto. Cruzes aplicadas na frente, espinhos nas mangas e pernas, e logo WF nas costas.",
     isNew: true,
     isBestseller: true,
-    tags: ["feminino", "conjunto", "kente-royale"],
+    tags: ["conjunto", "hoodie", "thorn"],
+  },
+  {
+    id: "WF-D-004",
+    slug: "washed-zip-set-2003",
+    name: "Washed Zip Set 2003",
+    category: "feminino",
+    collection: "Washed 2003",
+    price: 58900,
+    rating: 4.9,
+    reviews: 53,
+    colors: ["#3A3A3A", "#0B0B0B"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    stock: 8,
+    image: washedZipSet.url,
+    gallery: [washedZipSet.url],
+    description: "Conjunto cropped zip hoodie + calça flare em lavagem ácida cinza. Print «Life is too short to worry about 2003» nas costas e logo WF na perna.",
+    isNew: true,
+    isBestseller: true,
+    tags: ["conjunto", "cropped", "washed"],
+  },
+  {
+    id: "WF-D-005",
+    slug: "tee-desire-angel-purple",
+    name: "Tee Desire Angel Purple",
+    category: "masculino",
+    collection: "Desire",
+    price: 17900,
+    rating: 4.8,
+    reviews: 72,
+    colors: ["#FFFFFF", "#7B4FC0"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    stock: 16,
+    image: desireTee.url,
+    gallery: [desireTee.url, dontTripTee.url],
+    description: "T-shirt branca com print frontal «Desire»: querubim em grafite sobre lettering roxo desgastado e assinatura WF na barra.",
+    isNew: true,
+    isBestseller: true,
+    tags: ["tee", "desire", "print"],
+  },
+  {
+    id: "WF-D-006",
+    slug: "tee-dont-trip-purple",
+    name: "Tee Don't Trip Purple",
+    category: "feminino",
+    collection: "Desire",
+    price: 16900,
+    rating: 4.7,
+    reviews: 48,
+    colors: ["#FFFFFF", "#7B4FC0"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    stock: 18,
+    image: dontTripTee.url,
+    gallery: [dontTripTee.url, desireTee.url],
+    description: "T-shirt branca com lettering wavy roxo nas costas: «Don't trip over what's behind you». Corte relaxado em algodão penteado.",
+    isNew: true,
+    tags: ["tee", "desire", "feminino"],
   },
 ];
 
-export const products: Product[] = [...femininoProducts, ...seedProducts];
+export const products: Product[] = [...dropProducts, ...seedProducts];
 
 export const categoryLabels: Record<Category, string> = {
   masculino: "Masculino",
@@ -208,8 +245,8 @@ export function getRelated(p: Product, limit = 4) {
 export const collectionsList = collections;
 
 export const blogPosts = [
-  { slug: "tendencias-moda-africana-2026", title: "Tendências de moda africana para 2026", category: "Tendências", excerpt: "Cores, cortes e estampas que vão dominar a próxima estação.", date: "12 Mai 2026" },
-  { slug: "guia-tecidos-ankara-kente", title: "Guia completo: Ankara, Kente e Bogolan", category: "Cultura", excerpt: "Conheça a história dos tecidos que vestem o continente." , date: "02 Mai 2026" },
-  { slug: "como-combinar-estampa-africana", title: "Como combinar estampas africanas no dia a dia", category: "Moda Africana", excerpt: "Dicas para incorporar prints autênticos no seu visual.", date: "20 Abr 2026" },
-  { slug: "moda-luanda-fashion-week", title: "Luanda Fashion Week: o melhor da passarela", category: "Eventos", excerpt: "Os destaques da semana de moda mais aguardada de Angola.", date: "05 Abr 2026" },
+  { slug: "tendencias-streetwear-2026", title: "Tendências de streetwear para 2026", category: "Tendências", excerpt: "Oversized, lavagens ácidas e prints gráficos dominam a próxima estação.", date: "12 Mai 2026" },
+  { slug: "guia-hoodies-lavagens", title: "Guia: moletão pesado, lavagem ácida e boxy fit", category: "Cultura", excerpt: "Como reconhecer qualidade num hoodie e numa tee de drop limitado.", date: "02 Mai 2026" },
+  { slug: "como-usar-conjunto-cropped", title: "Como usar o conjunto cropped no dia a dia", category: "Estilo", excerpt: "Camadas, proporções e calçado certo para o Washed Zip Set.", date: "20 Abr 2026" },
+  { slug: "drops-limitados-luanda", title: "Drops limitados: como funciona a cultura de espera", category: "Eventos", excerpt: "Porque é que as peças Wow Factor não voltam depois de esgotar.", date: "05 Abr 2026" },
 ];

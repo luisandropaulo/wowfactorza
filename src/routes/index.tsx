@@ -3,15 +3,16 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Truck, Shield, RefreshCw, Headphones, ArrowRight, Star } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
+import { CollectionCarousel } from "@/components/CollectionCarousel";
 import { useCatalog, useSettings } from "@/stores/admin";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import hero from "@/assets/hero.jpg";
-import catMen from "@/assets/cat-men.jpg";
-import catWomen from "@/assets/cat-women.jpg";
 import catKids from "@/assets/cat-kids.jpg";
 import catAcc from "@/assets/cat-accessories.jpg";
+import catMenDrop from "@/assets/drops/thorn-tracksuit.jpg.asset.json";
+import catWomenDrop from "@/assets/drops/tee-clay-front.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,8 +28,8 @@ export const Route = createFileRoute("/")({
 });
 
 const categories = [
-  { key: "masculino", label: "Masculino", img: catMen, to: "/masculino" as const },
-  { key: "feminino", label: "Feminino", img: catWomen, to: "/feminino" as const },
+  { key: "masculino", label: "Masculino", img: catMenDrop.url, to: "/masculino" as const },
+  { key: "feminino", label: "Feminino", img: catWomenDrop.url, to: "/feminino" as const },
   { key: "infantil", label: "Infantil", img: catKids, to: "/colecoes" as const },
   { key: "acessorios", label: "Acessórios", img: catAcc, to: "/acessorios" as const },
 ];
@@ -42,7 +43,7 @@ const benefits = [
 
 const testimonials = [
   { name: "Maria Lopes", quote: "Qualidade impecável. As estampas são vibrantes e o caimento perfeito.", rating: 5 },
-  { name: "João Mateus", quote: "Vesti um blazer Kente no meu casamento. Recebi elogios o tempo todo.", rating: 5 },
+  { name: "João Mateus", quote: "O conjunto Thorn é pesado na medida certa. Ninguém passa sem comentar.", rating: 5 },
   { name: "Ana Cardoso", quote: "Embalagem premium, entrega rápida e atendimento atencioso.", rating: 5 },
 ];
 
@@ -117,6 +118,8 @@ function Index() {
           ))}
         </div>
       </section>
+
+      <CollectionCarousel />
 
       {/* FEATURED */}
       <section className="container-luxe py-16">

@@ -129,7 +129,7 @@ export const useAdmin = create<AdminState>()(
     }),
     {
       name: "wf-admin",
-      version: 3,
+      version: 4,
     },
   ),
 );

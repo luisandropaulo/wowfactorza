@@ -25,9 +25,9 @@ export const Route = createFileRoute("/blog/$slug")({
         <h1 className="mt-3 font-display text-4xl md:text-5xl">{post.title}</h1>
         <p className="mt-6 text-lg text-muted-foreground">{post.excerpt}</p>
         <div className="prose mt-10 space-y-4 text-foreground">
-          <p>O continente africano sempre foi um celeiro inesgotável de criatividade. Dos tecidos Ankara da Nigéria aos panos Kente do Gana, passando pelo Bogolan do Mali e pelo Shweshwe da África do Sul, cada padrão carrega séculos de história, identidade e orgulho.</p>
-          <p>Na Wow Factor, traduzimos essa riqueza cultural em peças contemporâneas, pensadas para o guarda-roupa moderno sem perder a alma das suas origens. Cada coleção é desenvolvida em parceria com artesãos locais, garantindo cadeias de produção justas e materiais sustentáveis.</p>
-          <p>O resultado é uma moda que celebra a diversidade, o talento e o futuro africano — para vestir todos os dias, com orgulho.</p>
+          <p>A rua é o nosso laboratório. Cada drop Wow Factor nasce de um detalhe do dia a dia urbano — um grafite, uma letra de rap, uma noite que não acabou — e transforma-se em print, lavagem ou corte oversized.</p>
+          <p>Trabalhamos com moletão pesado, algodão penteado e lavagens ácidas feitas em pequenas séries. Nada é produzido em massa: cada coleção tem numeração limitada e, quando esgota, não volta.</p>
+          <p>Thorn, Desire e Washed 2003 são os capítulos atuais dessa história — peças unissexo, pensadas para camadas, para se destacar e para durar muito mais do que uma estação.</p>
         </div>
       </article>
     );

@@ -5,10 +5,12 @@ import { useCatalog } from "@/stores/admin";
 export const Route = createFileRoute("/feminino")({
   head: () => ({
     meta: [
-      { title: "Feminino — Wow Factor" },
-      { name: "description", content: "Vestidos, conjuntos e peças femininas streetwear: oversized, cropped e casual urbano." },
-      { property: "og:title", content: "Feminino — Wow Factor" },
-      { property: "og:description", content: "Streetwear feminino Wow Factor." },
+      { title: "Feminino — Streetwear Wow Factor" },
+      { name: "description", content: "Streetwear feminino Wow Factor: tees oversized, conjuntos cropped washed e peças dos drops Thorn, Desire e WF Signature." },
+      { property: "og:title", content: "Feminino — Streetwear Wow Factor" },
+      { property: "og:description", content: "Tees oversized, conjuntos cropped e drops limitados para elas." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/feminino" }],
   }),
@@ -17,5 +19,5 @@ export const Route = createFileRoute("/feminino")({
 
 function FemininoPage() {
   const items = useCatalog().filter((p) => p.category === "feminino");
-  return <ProductGrid items={items} title="Feminino" subtitle="Liberdade, atitude e estilo urbano." />;
+  return <ProductGrid items={items} title="Feminino" subtitle="Tees oversized, conjuntos cropped e drops feitos para se destacar." />;
 }

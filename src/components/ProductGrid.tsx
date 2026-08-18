@@ -9,7 +9,7 @@ import { SlidersHorizontal } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 
 const ALL_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "Único"];
-const ALL_COLORS = ["#D4AF37", "#111827", "#8B4513", "#F5F5DC", "#B22222", "#1F4E3D"];
+const ALL_COLORS = ["#FFFFFF", "#111827", "#7B4FC0", "#A9605C", "#3A3A3A", "#D4AF37"];
 const PAGE_SIZE = 9;
 
 export function ProductGrid({ items, title, subtitle }: { items: Product[]; title?: string; subtitle?: string }) {
