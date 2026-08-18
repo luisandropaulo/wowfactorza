@@ -43,7 +43,7 @@ const benefits = [
 
 const testimonials = [
   { name: "Maria Lopes", quote: "Qualidade impecável. As estampas são vibrantes e o caimento perfeito.", rating: 5 },
-  { name: "João Mateus", quote: "Vesti um blazer Kente no meu casamento. Recebi elogios o tempo todo.", rating: 5 },
+  { name: "João Mateus", quote: "O conjunto Thorn é pesado na medida certa. Ninguém passa sem comentar.", rating: 5 },
   { name: "Ana Cardoso", quote: "Embalagem premium, entrega rápida e atendimento atencioso.", rating: 5 },
 ];
 

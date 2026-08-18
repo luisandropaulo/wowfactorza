@@ -65,7 +65,7 @@ const seeds: Array<{ name: string; category: Category; price: number; img: numbe
   { name: "Ténis High Top Mono", category: "acessorios", price: 31900, img: 4, desc: "Ténis cano alto monocromático em couro sintético." },
   { name: "Puffer Jacket Night", category: "masculino", price: 46900, img: 2, desc: "Casaco puffer acolchoado com capuz e forro térmico." },
   { name: "Jogger Slim Charcoal", category: "masculino", price: 18900, img: 2, desc: "Jogger slim com punhos elásticos." },
-  { name: "Hoodie Kids Heritage", category: "infantil", price: 12500, img: 0, desc: "Hoodie infantil com bolso canguru." },
+  { name: "Hoodie Kids Street", category: "infantil", price: 12500, img: 0, desc: "Hoodie infantil com bolso canguru." },
   { name: "Cinto Web Buckle", category: "acessorios", price: 5500, img: 3, desc: "Cinto em web com fivela metálica." },
   { name: "Tee Graphic Geo", category: "masculino", price: 13500, img: 0, desc: "T-shirt com print geométrico frontal." },
   { name: "Conjunto Tracksuit Mono", category: "masculino", price: 49900, img: 2, desc: "Conjunto tracksuit hoodie + calça em moletão pesado." },
@@ -245,8 +245,8 @@ export function getRelated(p: Product, limit = 4) {
 export const collectionsList = collections;
 
 export const blogPosts = [
-  { slug: "tendencias-moda-africana-2026", title: "Tendências de moda africana para 2026", category: "Tendências", excerpt: "Cores, cortes e estampas que vão dominar a próxima estação.", date: "12 Mai 2026" },
-  { slug: "guia-tecidos-ankara-kente", title: "Guia completo: Ankara, Kente e Bogolan", category: "Cultura", excerpt: "Conheça a história dos tecidos que vestem o continente." , date: "02 Mai 2026" },
-  { slug: "como-combinar-estampa-africana", title: "Como combinar estampas africanas no dia a dia", category: "Moda Africana", excerpt: "Dicas para incorporar prints autênticos no seu visual.", date: "20 Abr 2026" },
-  { slug: "moda-luanda-fashion-week", title: "Luanda Fashion Week: o melhor da passarela", category: "Eventos", excerpt: "Os destaques da semana de moda mais aguardada de Angola.", date: "05 Abr 2026" },
+  { slug: "tendencias-streetwear-2026", title: "Tendências de streetwear para 2026", category: "Tendências", excerpt: "Oversized, lavagens ácidas e prints gráficos dominam a próxima estação.", date: "12 Mai 2026" },
+  { slug: "guia-hoodies-lavagens", title: "Guia: moletão pesado, lavagem ácida e boxy fit", category: "Cultura", excerpt: "Como reconhecer qualidade num hoodie e numa tee de drop limitado.", date: "02 Mai 2026" },
+  { slug: "como-usar-conjunto-cropped", title: "Como usar o conjunto cropped no dia a dia", category: "Estilo", excerpt: "Camadas, proporções e calçado certo para o Washed Zip Set.", date: "20 Abr 2026" },
+  { slug: "drops-limitados-luanda", title: "Drops limitados: como funciona a cultura de espera", category: "Eventos", excerpt: "Porque é que as peças Wow Factor não voltam depois de esgotar.", date: "05 Abr 2026" },
 ];
