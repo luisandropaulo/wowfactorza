@@ -3,15 +3,16 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Truck, Shield, RefreshCw, Headphones, ArrowRight, Star } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
+import { CollectionCarousel } from "@/components/CollectionCarousel";
 import { useCatalog, useSettings } from "@/stores/admin";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import hero from "@/assets/hero.jpg";
-import catMen from "@/assets/cat-men.jpg";
-import catWomen from "@/assets/cat-women.jpg";
 import catKids from "@/assets/cat-kids.jpg";
 import catAcc from "@/assets/cat-accessories.jpg";
+import catMenDrop from "@/assets/drops/thorn-tracksuit.jpg.asset.json";
+import catWomenDrop from "@/assets/drops/tee-clay-front.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,8 +28,8 @@ export const Route = createFileRoute("/")({
 });
 
 const categories = [
-  { key: "masculino", label: "Masculino", img: catMen, to: "/masculino" as const },
-  { key: "feminino", label: "Feminino", img: catWomen, to: "/feminino" as const },
+  { key: "masculino", label: "Masculino", img: catMenDrop.url, to: "/masculino" as const },
+  { key: "feminino", label: "Feminino", img: catWomenDrop.url, to: "/feminino" as const },
   { key: "infantil", label: "Infantil", img: catKids, to: "/colecoes" as const },
   { key: "acessorios", label: "Acessórios", img: catAcc, to: "/acessorios" as const },
 ];
@@ -117,6 +118,8 @@ function Index() {
           ))}
         </div>
       </section>
+
+      <CollectionCarousel />
 
       {/* FEATURED */}
       <section className="container-luxe py-16">
