@@ -37,7 +37,7 @@ export interface Product {
 }
 
 const images = [p1, p2, p3, p4, p5, p6];
-const baseColors = ["#D4AF37", "#111827", "#8B4513", "#F5F5DC", "#B22222", "#1F4E3D"];
+const baseColors = ["#FFFFFF", "#111827", "#7B4FC0", "#A9605C", "#3A3A3A", "#D4AF37"];
 const baseSizes = ["XS", "S", "M", "L", "XL", "XXL"];
 const collections = ["Thorn", "Desire", "Washed 2003", "WF Signature", "Street Essentials"];
 
