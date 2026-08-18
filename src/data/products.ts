@@ -4,14 +4,14 @@ import p3 from "@/assets/p3.jpg";
 import p4 from "@/assets/p4.jpg";
 import p5 from "@/assets/p5.jpg";
 import p6 from "@/assets/p6.jpg";
-import kimono1 from "@/assets/feminino/1_kimono.jpg.asset.json";
-import kimono2 from "@/assets/feminino/2_kimono.jpg.asset.json";
-import pindale1 from "@/assets/feminino/1_pindale-top-skirt.jpg.asset.json";
-import pindale4 from "@/assets/feminino/4_pindale-top-skirt.jpg.asset.json";
-import green2 from "@/assets/feminino/2_green-skirt.jpg.asset.json";
-import green4 from "@/assets/feminino/4_green-skirt.jpg.asset.json";
-import busin1 from "@/assets/feminino/1_busin-suit.jpg.asset.json";
-import busin2 from "@/assets/feminino/2_busin-suit.jpg.asset.json";
+import teeWhiteFront from "@/assets/drops/tee-white-front.jpg.asset.json";
+import teeWhiteBack from "@/assets/drops/tee-white-back.jpg.asset.json";
+import teeClayFront from "@/assets/drops/tee-clay-front.jpg.asset.json";
+import teeClayBack from "@/assets/drops/tee-clay-back.jpg.asset.json";
+import thornTracksuit from "@/assets/drops/thorn-tracksuit.jpg.asset.json";
+import washedZipSet from "@/assets/drops/washed-zip-set.jpg.asset.json";
+import desireTee from "@/assets/drops/desire-tee.jpg.asset.json";
+import dontTripTee from "@/assets/drops/dont-trip-tee.jpg.asset.json";
 
 export type Category = "masculino" | "feminino" | "infantil" | "acessorios";
 
