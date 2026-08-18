@@ -17,7 +17,7 @@ export const Route = createFileRoute("/sobre")({
 
 const timeline = [
   { y: "2019", t: "Nasce a ideia em Luanda" },
-  { y: "2021", t: "Primeira coleção Heritage" },
+  { y: "2021", t: "Primeiro drop Thorn" },
   { y: "2023", t: "Loja física no centro de Luanda" },
   { y: "2025", t: "Expansão para Lisboa, Maputo e Lagos" },
   { y: "2026", t: "Coleção WF Spirit em parceria com artesãos malianos" },

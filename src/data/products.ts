@@ -37,7 +37,7 @@ export interface Product {
 }
 
 const images = [p1, p2, p3, p4, p5, p6];
-const baseColors = ["#D4AF37", "#111827", "#8B4513", "#F5F5DC", "#B22222", "#1F4E3D"];
+const baseColors = ["#FFFFFF", "#111827", "#7B4FC0", "#A9605C", "#3A3A3A", "#D4AF37"];
 const baseSizes = ["XS", "S", "M", "L", "XL", "XXL"];
 const collections = ["Thorn", "Desire", "Washed 2003", "WF Signature", "Street Essentials"];
 
@@ -72,6 +72,12 @@ const seeds: Array<{ name: string; category: Category; price: number; img: numbe
   { name: "Mochila Tech Daily", category: "acessorios", price: 21900, img: 3, desc: "Mochila em nylon com compartimento para portátil." },
   { name: "Tee Essential Branca", category: "masculino", price: 11900, img: 0, desc: "T-shirt essencial branca em algodão penteado." },
   { name: "Boné Dad Hat Washed", category: "acessorios", price: 6900, img: 3, desc: "Dad hat em algodão lavado com logo bordado." },
+  { name: "Hoodie Oversized Cream", category: "feminino", price: 25900, img: 1, desc: "Hoodie oversized em tom cream com capuz duplo e punhos canelados." },
+  { name: "Calça Baggy Jeans Black", category: "feminino", price: 23900, img: 1, desc: "Calça baggy em ganga preta com cintura descaída." },
+  { name: "Tee Boxy Fit Cream", category: "feminino", price: 12900, img: 0, desc: "T-shirt boxy fit em algodão pesado, corte curto." },
+  { name: "Conjunto Cropped Moletão", category: "feminino", price: 34900, img: 2, desc: "Conjunto cropped hoodie + jogger em moletão felpado." },
+  { name: "Top Cropped Ribbed", category: "feminino", price: 9900, img: 1, desc: "Top cropped canelado de alças finas para layering." },
+  { name: "Casaco Zip Washed Grey", category: "feminino", price: 29900, img: 2, desc: "Casaco com fecho integral em lavagem cinza vintage." },
 ];
 
 function slugify(s: string) {
