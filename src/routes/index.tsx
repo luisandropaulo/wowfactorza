@@ -4,15 +4,11 @@ import { motion } from "framer-motion";
 import { Truck, Shield, RefreshCw, Headphones, ArrowRight, Star } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
 import { CollectionCarousel } from "@/components/CollectionCarousel";
-import { useCatalog, useSettings } from "@/stores/admin";
+import { useCatalog, useSettings, useHomeCategories } from "@/stores/admin";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import hero from "@/assets/hero.jpg";
-import catKids from "@/assets/cat-kids.jpg";
-import catAcc from "@/assets/cat-accessories.jpg";
-import catMenDrop from "@/assets/drops/thorn-tracksuit.jpg.asset.json";
-import catWomenDrop from "@/assets/drops/tee-clay-front.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,13 +22,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const categories = [
-  { key: "masculino", label: "Masculino", img: catMenDrop.url, to: "/masculino" as const },
-  { key: "feminino", label: "Feminino", img: catWomenDrop.url, to: "/feminino" as const },
-  { key: "infantil", label: "Infantil", img: catKids, to: "/colecoes" as const },
-  { key: "acessorios", label: "Acessórios", img: catAcc, to: "/acessorios" as const },
-];
 
 const benefits = [
   { icon: Truck, title: "Entrega Nacional", desc: "Em toda Angola, rápido e seguro." },
@@ -50,6 +39,7 @@ const testimonials = [
 function Index() {
   const catalog = useCatalog();
   const settings = useSettings();
+  const categories = useHomeCategories();
   const featured = catalog.slice(0, 8);
   const newCollection = catalog.slice(8, 14);
 
@@ -83,7 +73,7 @@ function Index() {
             className="mt-8 flex flex-wrap gap-4"
           >
             <Link to="/colecoes">
-              <Button size="lg" className="bg-gradient-gold text-secondary hover:opacity-90">Comprar Agora <ArrowRight className="h-4 w-4" /></Button>
+              <Button size="lg" className="bg-gradient-gold text-secondary hover:opacity-90">{settings.heroCta} <ArrowRight className="h-4 w-4" /></Button>
             </Link>
             <Link to="/colecoes">
               <Button size="lg" variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white hover:text-secondary">Nova Coleção</Button>
@@ -97,15 +87,15 @@ function Index() {
         <div className="mb-12 flex items-end justify-between gap-4">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-gold">Explore</p>
-            <h2 className="mt-2 font-display text-4xl md:text-5xl">Categorias</h2>
+            <h2 className="mt-2 font-display text-4xl md:text-5xl">{settings.categoriesTitle}</h2>
           </div>
           <Link to="/colecoes" className="hidden text-sm font-medium underline-offset-4 hover:underline md:block">Ver tudo</Link>
         </div>
         <div className="grid gap-4 md:grid-cols-4">
           {categories.map((c, i) => (
-            <motion.div key={c.key} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-              <Link to={c.to} className="group relative block aspect-[3/4] overflow-hidden rounded-sm">
-                <img src={c.img} alt={c.label} loading="lazy" width={800} height={1024} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <motion.div key={c.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+              <Link to={c.to as "/colecoes"} className="group relative block aspect-[3/4] overflow-hidden rounded-sm">
+                <img src={c.image} alt={c.label} loading="lazy" width={800} height={1024} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6 text-white">
                   <h3 className="font-display text-2xl">{c.label}</h3>
@@ -125,7 +115,7 @@ function Index() {
       <section className="container-luxe py-16">
         <div className="mb-12 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-gold">Mais desejados</p>
-          <h2 className="mt-2 font-display text-4xl md:text-5xl">Produtos em Destaque</h2>
+          <h2 className="mt-2 font-display text-4xl md:text-5xl">{settings.featuredTitle}</h2>
         </div>
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
           {featured.map((p) => <ProductCard key={p.id} product={p} />)}
@@ -196,8 +186,8 @@ function Index() {
       {/* NEWSLETTER */}
       <section className="container-luxe py-24">
         <div className="rounded-sm bg-gradient-gold p-12 text-center text-secondary shadow-gold md:p-16">
-          <h2 className="font-display text-3xl md:text-5xl">Receba novidades e promoções exclusivas</h2>
-          <p className="mx-auto mt-3 max-w-xl">Junte-se à família Wow Factor e seja o primeiro a conhecer as novas coleções.</p>
+          <h2 className="font-display text-3xl md:text-5xl">{settings.newsletterTitle}</h2>
+          <p className="mx-auto mt-3 max-w-xl">{settings.newsletterSubtitle}</p>
           <form
             onSubmit={(e) => {
               e.preventDefault();

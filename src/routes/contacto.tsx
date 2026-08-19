@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import { useSettings } from "@/stores/admin";
 
 export const Route = createFileRoute("/contacto")({
   head: () => ({
@@ -16,7 +17,12 @@ export const Route = createFileRoute("/contacto")({
     ],
     links: [{ rel: "canonical", href: "/contacto" }],
   }),
-  component: () => (
+  component: ContactPage,
+});
+
+function ContactPage() {
+  const s = useSettings();
+  return (
     <div className="container-luxe py-12">
       <h1 className="text-center font-display text-5xl">Contacto</h1>
       <p className="mt-3 text-center text-muted-foreground">Estamos prontos a ajudar.</p>
@@ -36,10 +42,10 @@ export const Route = createFileRoute("/contacto")({
         </form>
         <div className="space-y-6">
           <div className="space-y-4 border border-border bg-card p-6">
-            <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-gold" /> +244 923 000 000</div>
-            <div className="flex items-center gap-3"><Mail className="h-5 w-5 text-gold" /> hello@wowfactor.com</div>
-            <div className="flex items-start gap-3"><MapPin className="h-5 w-5 mt-0.5 text-gold" /> Rua da Missão, Luanda, Angola</div>
-            <a href="https://wa.me/244923000000" target="_blank" rel="noopener" className="inline-block"><Button variant="outline">WhatsApp directo</Button></a>
+            <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-gold" /> {s.contactPhone}</div>
+            <div className="flex items-center gap-3"><Mail className="h-5 w-5 text-gold" /> {s.contactEmail}</div>
+            <div className="flex items-start gap-3"><MapPin className="h-5 w-5 mt-0.5 text-gold" /> {s.contactAddress}</div>
+            <a href={`https://wa.me/${s.whatsapp.replace(/[^0-9]/g, "")}`} target="_blank" rel="noopener" className="inline-block"><Button variant="outline">WhatsApp directo</Button></a>
           </div>
           <div className="aspect-video overflow-hidden border border-border">
             <iframe title="Mapa" src="https://www.openstreetmap.org/export/embed.html?bbox=13.22%2C-8.84%2C13.26%2C-8.81&layer=mapnik" className="h-full w-full" loading="lazy" />
@@ -47,5 +53,5 @@ export const Route = createFileRoute("/contacto")({
         </div>
       </div>
     </div>
-  ),
-});
+  );
+}

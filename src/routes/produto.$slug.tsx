@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { formatPrice, type Product } from "@/data/products";
-import { getProductBySlugLive, getRelatedLive } from "@/stores/admin";
-import { useState } from "react";
+import { getProductBySlugLive, getRelatedLive, useCatalog } from "@/stores/admin";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/ProductCard";
 import { useCart, useWishlist } from "@/stores/shop";
@@ -34,15 +34,20 @@ export const Route = createFileRoute("/produto/$slug")({
 });
 
 function ProductPage() {
-  const { product } = Route.useLoaderData() as { product: Product };
+  const { product: loaded } = Route.useLoaderData() as { product: Product };
+  const catalog = useCatalog();
+  const product = catalog.find((p) => p.slug === loaded.slug) ?? loaded;
   const [size, setSize] = useState(product.sizes[0]);
   const [color, setColor] = useState(product.colors[0]);
   const [qty, setQty] = useState(1);
   const [mainImg, setMainImg] = useState(product.gallery[0]);
   const [zoom, setZoom] = useState(false);
+  useEffect(() => {
+    setMainImg(product.gallery[0]);
+  }, [product.id, product.gallery[0]]);
   const add = useCart((s) => s.add);
   const { has, toggle } = useWishlist();
-  const related = getRelatedLive(product);
+  const related = catalog.filter((x) => x.category === product.category && x.id !== product.id).slice(0, 4);
 
   const handleAdd = () => {
     add({ id: product.id, slug: product.slug, name: product.name, price: product.price, image: product.image, size, color, quantity: qty });

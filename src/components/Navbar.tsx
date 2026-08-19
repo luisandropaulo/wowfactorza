@@ -5,7 +5,7 @@ import { useCart, useWishlist, useUI } from "@/stores/shop";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { products } from "@/data/products";
+import { useCatalog } from "@/stores/admin";
 import { cn } from "@/lib/utils";
 import logoAsset from "@/assets/wow-factor-logo.jpg.asset.json";
 
@@ -29,6 +29,7 @@ export function Navbar() {
   const { theme, toggleTheme, searchOpen, setSearchOpen } = useUI();
   const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const products = useCatalog();
   const transparent = pathname === "/" && !scrolled;
 
   useEffect(() => {

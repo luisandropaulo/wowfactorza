@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import hero from "@/assets/hero.jpg";
+import { useSettings } from "@/stores/admin";
 
 export const Route = createFileRoute("/sobre")({
   head: () => ({
@@ -24,19 +25,23 @@ const timeline = [
 ];
 
 function About() {
+  const s = useSettings();
   return (
     <div>
       <section className="relative h-[60vh] min-h-[420px] -mt-20 overflow-hidden">
         <img src={hero} alt="Wow Factor" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-black/60" />
         <div className="container-luxe relative z-10 flex h-full items-end pb-16 text-white">
-          <motion.h1 initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="font-display text-5xl md:text-7xl max-w-3xl">A nossa história começa em África</motion.h1>
+          <motion.h1 initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="font-display text-5xl md:text-7xl max-w-3xl">{s.aboutHeadline}</motion.h1>
         </div>
       </section>
+      <section className="container-luxe pt-16">
+        <p className="mx-auto max-w-3xl text-center text-lg text-muted-foreground">{s.aboutShort}</p>
+      </section>
       <section className="container-luxe grid gap-12 py-20 md:grid-cols-3">
-        <div><h2 className="font-display text-2xl text-gold">Missão</h2><p className="mt-3 text-muted-foreground">Levar o streetwear jovem angolano ao mundo, com peças de qualidade e produção responsável.</p></div>
-        <div><h2 className="font-display text-2xl text-gold">Visão</h2><p className="mt-3 text-muted-foreground">Ser a marca de referência do streetwear contemporâneo em Angola e além.</p></div>
-        <div><h2 className="font-display text-2xl text-gold">Valores</h2><p className="mt-3 text-muted-foreground">Autenticidade, qualidade, comunidade e liberdade de expressão.</p></div>
+        <div><h2 className="font-display text-2xl text-gold">Missão</h2><p className="mt-3 text-muted-foreground">{s.aboutMission}</p></div>
+        <div><h2 className="font-display text-2xl text-gold">Visão</h2><p className="mt-3 text-muted-foreground">{s.aboutVision}</p></div>
+        <div><h2 className="font-display text-2xl text-gold">Valores</h2><p className="mt-3 text-muted-foreground">{s.aboutValues}</p></div>
       </section>
       <section className="bg-muted/30 py-20">
         <div className="container-luxe">

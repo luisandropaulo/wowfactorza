@@ -2,26 +2,29 @@ import { Link } from "@tanstack/react-router";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { dropProducts, formatPrice } from "@/data/products";
+import { formatPrice } from "@/data/products";
+import { useCarouselProducts, useSettings } from "@/stores/admin";
 import { ArrowRight } from "lucide-react";
 
 export function CollectionCarousel() {
   const autoplay = useRef(Autoplay({ delay: 4000, stopOnInteraction: false }));
+  const items = useCarouselProducts();
+  const settings = useSettings();
 
   return (
     <section className="bg-muted/30 py-24">
       <div className="container-luxe">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-gold">Disponível agora</p>
-            <h2 className="mt-2 font-display text-4xl md:text-5xl">Coleções à venda</h2>
+            <p className="text-xs uppercase tracking-[0.3em] text-gold">{settings.carouselSubtitle}</p>
+            <h2 className="mt-2 font-display text-4xl md:text-5xl">{settings.carouselTitle}</h2>
           </div>
           <Link to="/colecoes" className="text-sm font-medium underline-offset-4 hover:underline">Ver todas as peças</Link>
         </div>
 
         <Carousel opts={{ align: "start", loop: true }} plugins={[autoplay.current]} className="w-full">
           <CarouselContent className="-ml-4">
-            {dropProducts.map((p) => (
+            {items.map((p) => (
               <CarouselItem key={p.id} className="pl-4 sm:basis-1/2 lg:basis-1/3">
                 <Link to="/produto/$slug" params={{ slug: p.slug }} className="group block">
                   <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-background">

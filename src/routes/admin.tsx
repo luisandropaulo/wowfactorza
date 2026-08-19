@@ -12,8 +12,9 @@ import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Pencil, Trash2, Search, ExternalLink, RotateCcw, Save, ShieldAlert, Package, Settings as SettingsIcon, FileText, CreditCard, Image as ImageIcon, Receipt, Landmark } from "lucide-react";
+import { Plus, Pencil, Trash2, Search, ExternalLink, RotateCcw, Save, ShieldAlert, Package, Settings as SettingsIcon, FileText, CreditCard, Image as ImageIcon, Receipt, Landmark, LogOut } from "lucide-react";
 import { toast } from "sonner";
+import { AdminGate, adminLogout } from "@/components/AdminGate";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -23,8 +24,16 @@ export const Route = createFileRoute("/admin")({
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
-  component: AdminPage,
+  component: AdminRoute,
 });
+
+function AdminRoute() {
+  return (
+    <AdminGate>
+      <AdminPage />
+    </AdminGate>
+  );
+}
 
 function AdminPage() {
   return (
@@ -37,6 +46,7 @@ function AdminPage() {
           </div>
           <div className="flex items-center gap-2">
             <Link to="/"><Button variant="outline" size="sm"><ExternalLink className="h-4 w-4" /> Ver loja</Button></Link>
+            <Button variant="ghost" size="sm" onClick={adminLogout}><LogOut className="h-4 w-4" /> Sair</Button>
           </div>
         </div>
       </header>
@@ -368,26 +378,88 @@ function ProductForm({ product, onChange, onSave }: { product: Product; onChange
 /* ---------------- CONTENT ---------------- */
 
 function ContentTab() {
-  const { settings, updateSettings } = useAdmin();
+  const { settings, updateSettings, homeCategories, upsertHomeCategory, deleteHomeCategory, products, carouselProductIds, setCarouselProductIds } = useAdmin();
   const [draft, setDraft] = useState(settings);
 
   return (
+    <div className="space-y-6">
     <div className="space-y-6 rounded-sm border border-border bg-background p-6">
       <div>
         <h2 className="font-display text-2xl">Conteúdos do site</h2>
-        <p className="text-sm text-muted-foreground">Edite os textos principais da loja.</p>
+        <p className="text-sm text-muted-foreground">Edite os textos principais da loja. Guardar aplica de imediato em todas as páginas.</p>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <Field label="Hero — Título"><Input value={draft.heroTitle} onChange={(e) => setDraft({ ...draft, heroTitle: e.target.value })} /></Field>
         <Field label="Hero — CTA"><Input value={draft.heroCta} onChange={(e) => setDraft({ ...draft, heroCta: e.target.value })} /></Field>
         <Field label="Hero — Subtítulo" className="md:col-span-2"><Textarea rows={3} value={draft.heroSubtitle} onChange={(e) => setDraft({ ...draft, heroSubtitle: e.target.value })} /></Field>
         <Field label="Tagline" className="md:col-span-2"><Input value={draft.tagline} onChange={(e) => setDraft({ ...draft, tagline: e.target.value })} /></Field>
+        <Field label="Título — Categorias"><Input value={draft.categoriesTitle} onChange={(e) => setDraft({ ...draft, categoriesTitle: e.target.value })} /></Field>
+        <Field label="Título — Destaques"><Input value={draft.featuredTitle} onChange={(e) => setDraft({ ...draft, featuredTitle: e.target.value })} /></Field>
+        <Field label="Carrossel — Etiqueta"><Input value={draft.carouselSubtitle} onChange={(e) => setDraft({ ...draft, carouselSubtitle: e.target.value })} /></Field>
+        <Field label="Carrossel — Título"><Input value={draft.carouselTitle} onChange={(e) => setDraft({ ...draft, carouselTitle: e.target.value })} /></Field>
+        <Field label="Newsletter — Título"><Input value={draft.newsletterTitle} onChange={(e) => setDraft({ ...draft, newsletterTitle: e.target.value })} /></Field>
+        <Field label="Newsletter — Subtítulo"><Input value={draft.newsletterSubtitle} onChange={(e) => setDraft({ ...draft, newsletterSubtitle: e.target.value })} /></Field>
         <Field label="Sobre nós — Resumo" className="md:col-span-2"><Textarea rows={4} value={draft.aboutShort} onChange={(e) => setDraft({ ...draft, aboutShort: e.target.value })} /></Field>
+        <Field label="Sobre nós — Título de capa" className="md:col-span-2"><Input value={draft.aboutHeadline} onChange={(e) => setDraft({ ...draft, aboutHeadline: e.target.value })} /></Field>
+        <Field label="Missão"><Textarea rows={3} value={draft.aboutMission} onChange={(e) => setDraft({ ...draft, aboutMission: e.target.value })} /></Field>
+        <Field label="Visão"><Textarea rows={3} value={draft.aboutVision} onChange={(e) => setDraft({ ...draft, aboutVision: e.target.value })} /></Field>
+        <Field label="Valores" className="md:col-span-2"><Textarea rows={3} value={draft.aboutValues} onChange={(e) => setDraft({ ...draft, aboutValues: e.target.value })} /></Field>
+        <Field label="Rodapé — Assinatura" className="md:col-span-2"><Input value={draft.footerNote} onChange={(e) => setDraft({ ...draft, footerNote: e.target.value })} /></Field>
       </div>
       <div className="flex gap-2">
         <Button onClick={() => { updateSettings(draft); toast.success("Conteúdos atualizados"); }}><Save className="h-4 w-4" /> Guardar</Button>
         <Button variant="outline" onClick={() => setDraft(settings)}>Cancelar</Button>
       </div>
+    </div>
+
+    <div className="space-y-4 rounded-sm border border-border bg-background p-6">
+      <div>
+        <h2 className="font-display text-2xl">Categorias da home</h2>
+        <p className="text-sm text-muted-foreground">Nome, imagem (URL) e link de cada cartão apresentado na página inicial.</p>
+      </div>
+      {homeCategories.map((c) => (
+        <div key={c.id} className="grid gap-3 rounded-sm border border-border p-4 md:grid-cols-4">
+          <img src={c.image} alt={c.label} className="h-24 w-full rounded-sm object-cover md:h-full" />
+          <Field label="Nome"><Input value={c.label} onChange={(e) => upsertHomeCategory({ ...c, label: e.target.value })} /></Field>
+          <Field label="Imagem (URL)"><Input value={c.image} onChange={(e) => upsertHomeCategory({ ...c, image: e.target.value })} /></Field>
+          <div className="grid gap-2">
+            <Field label="Link"><Input value={c.to} onChange={(e) => upsertHomeCategory({ ...c, to: e.target.value })} /></Field>
+            <Button variant="ghost" size="sm" onClick={() => { if (confirm(`Remover categoria ${c.label}?`)) deleteHomeCategory(c.id); }}>
+              <Trash2 className="h-4 w-4 text-destructive" /> Remover
+            </Button>
+          </div>
+        </div>
+      ))}
+      <Button variant="outline" onClick={() => upsertHomeCategory({ id: `cat-${Date.now()}`, label: "Nova categoria", image: "", to: "/colecoes" })}>
+        <Plus className="h-4 w-4" /> Adicionar categoria
+      </Button>
+    </div>
+
+    <div className="space-y-4 rounded-sm border border-border bg-background p-6">
+      <div>
+        <h2 className="font-display text-2xl">Carrossel de coleções</h2>
+        <p className="text-sm text-muted-foreground">Escolha as peças exibidas no carrossel da página inicial.</p>
+      </div>
+      <div className="grid max-h-96 gap-2 overflow-y-auto md:grid-cols-2">
+        {products.map((p) => {
+          const active = carouselProductIds.includes(p.id);
+          return (
+            <label key={p.id} className="flex items-center gap-3 rounded-sm border border-border p-2 text-sm">
+              <input
+                type="checkbox"
+                checked={active}
+                onChange={() =>
+                  setCarouselProductIds(active ? carouselProductIds.filter((id) => id !== p.id) : [...carouselProductIds, p.id])
+                }
+              />
+              <img src={p.image} alt="" className="h-10 w-10 rounded-sm object-cover" />
+              <span className="flex-1">{p.name}</span>
+              <span className="text-muted-foreground">{formatPrice(p.price)}</span>
+            </label>
+          );
+        })}
+      </div>
+    </div>
     </div>
   );
 }
@@ -467,6 +539,12 @@ function SettingsTab() {
           <Field label="Endereço"><Input value={draft.contactAddress} onChange={(e) => setDraft({ ...draft, contactAddress: e.target.value })} /></Field>
           <Field label="Instagram"><Input value={draft.instagram} onChange={(e) => setDraft({ ...draft, instagram: e.target.value })} /></Field>
           <Field label="Facebook"><Input value={draft.facebook} onChange={(e) => setDraft({ ...draft, facebook: e.target.value })} /></Field>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          <Field label="Código de acesso ao painel">
+            <Input value={draft.adminPin} onChange={(e) => setDraft({ ...draft, adminPin: e.target.value })} />
+          </Field>
+          <p className="self-end text-sm text-muted-foreground">Guarde este código: é o que dá acesso a /admin. Não é divulgado no site.</p>
         </div>
       </div>
 
